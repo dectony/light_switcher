@@ -1,0 +1,13 @@
+doctype
+html
+    head
+        title My PR3
+        link(href="/favicon.ico", rel="shortcut icon", type="image/x-icon")
+        link(rel="stylesheet", href="/vendor/bootstrap/dist/css/bootstrap.min.css")
+        link(rel="stylesheet", href="/vendor/toastr/toastr.css")
+        link(rel="stylesheet", href="/vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css")
+        link(rel="stylesheet", href="/css/site.css")
+    body(ng-app='app')
+        include currentUser
+        block main-content
+        include scripts

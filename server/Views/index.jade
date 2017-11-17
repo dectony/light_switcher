@@ -1,0 +1,46 @@
+extends ../Includes/layout
+
+block main-content
+    .navbar.navbar-inverse.navbar-fixed-top.headroom
+        .container
+            .navbar-header
+                button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+                    span.icon-bar
+                    span.icon-bar
+                    span.icon-bar
+                a.navbar-brand(href='index.html') PR3
+                    h6 -My test project
+            .navbar-collapse.collapse
+                ul.nav.navbar-nav.pull-right
+                    li.active
+                        a(href='#') Home
+                    li
+                        a(href='about.html') About
+                    li.dropdown
+                        a.dropdown-toggle(href='#', data-toggle='dropdown')
+                            | Cars
+                            b.caret
+                        ul.dropdown-menu
+                            li
+                                a(href="/cars") Cars
+                            li
+                                a(href="/caradding") Add car
+                    li.dropdown
+                        a.dropdown-toggle(href='#', data-toggle='dropdown')
+                            | Auctions
+                            b.caret
+                        ul.dropdown-menu
+                            li
+                                a(href="/auctions") Auctions
+                            li
+                                a(href="/auction-add") Add Auction
+                    li
+                        a(href='contact.html') Contact
+                    li
+                        div(ng-include = "'/partials/account/navbar-login'")
+    section.content
+        div(ng-view)
+
+
+    footer.conatiner.text-center
+        p &copy; 2016 decCo International Ltd.

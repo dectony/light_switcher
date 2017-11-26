@@ -25,5 +25,8 @@
     "webpack-dev-server": "^2.8.2"
   },
   "author": "Anton Zasenka",
-  "license": "ISC"
+  "license": "ISC",
+  "scripts": {
+     "start": "webpack-dev-server --open"
+    }
 }

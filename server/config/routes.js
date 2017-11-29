@@ -13,6 +13,12 @@ module.exports = function (app) {
         res.render('../../Public/app/' + req.params[0])
     });
 
+    app.use(function(req, res, next) {
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        next();
+    });
+
     app.post('/api/upload', upload.single('file'), function (req, res, next)
     {
         console.log(req.body);

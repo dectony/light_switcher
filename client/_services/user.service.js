@@ -62,6 +62,7 @@ function getById(id) {
 function register(user) {
     const requestOptions = {
         method: 'POST',
+        mode: 'cors',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(user)
     };

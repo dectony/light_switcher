@@ -1,4 +1,5 @@
 var passport = require('passport');
+var jwt = require('jwt-simple');
 
 exports.authenticate = function (req, res, next) {
     console.log(req.body);
@@ -15,9 +16,8 @@ exports.authenticate = function (req, res, next) {
             if (err) {
                 return next(err);
             }
-            user[token] = user.salt;
-            console.log(user);
-            res.send({success: true, user: user});
+            var token  = jwt.encode({id: user._id}, 'secret');
+            res.send({success: true, user: {...user, token: token}});
 
         })
     })

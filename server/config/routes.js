@@ -1,4 +1,5 @@
 var mongoose = require('mongoose'),
+    passport = require('passport'),
     auth = require('./auth'),
     users = require('../controllers/users'),
     cars = require('../controllers/cars'),
@@ -50,7 +51,7 @@ module.exports = function (app) {
     app.delete('/api/bids/:id', bids.deleteBid);
 
     app.post('/login', auth.authenticate);
-
+    //app.post('/login', passport.authenticate('jwt', {session: false}), auth.authenticate);
     app.post('/logout', function (req, res) {
         req.logout();
         res.end();

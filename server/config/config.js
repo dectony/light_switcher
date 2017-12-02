@@ -7,12 +7,14 @@ module.exports = {
     development: {
         db: 'mongodb://localhost/PR3',
         rootPath: rootPath,
-        port: process.env.PORT || 3030
+        port: process.env.PORT || 3030,
+        jwtSecret: 'secret',
+        jwtSession: {
+            session: false
+        }
 
     },
     production: {
-        db: 'mongodb://dectony:5145muZZle.pr3@ds015869.mlab.com:15869/pr3',
-        rootPath: rootPath,
-        port: process.env.PORT || 80
+
     }
 }

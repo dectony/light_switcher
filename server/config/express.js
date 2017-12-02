@@ -16,7 +16,7 @@ module.exports = function(app, config) {
     app.use(morgan('dev'));
     app.use(bodyParser());
     app.use(bodyParser.urlencoded({ extended: false })) // parse application/x-www-form-urlencoded
-    app.use(bodyParser.json()) // parse application/json
+    app.use(bodyParser.json()); // parse application/json
     app.use(session({secret: 'pr3 unicorns'}));
     app.use(cookieParser());
     app.use(passport.initialize());

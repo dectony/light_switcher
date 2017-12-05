@@ -1,5 +1,6 @@
 var passport = require('passport');
 var jwt = require('jwt-simple');
+   // myJWT = require('../config/jwt')();
 
 exports.authenticate = function (req, res, next) {
     console.log(req.body);
@@ -17,10 +18,11 @@ exports.authenticate = function (req, res, next) {
                 return next(err);
             }
             var token  = jwt.encode({id: user._id}, 'secret');
+            //var token  = myJWT.getToken(user._id);
             res.send({success: true, user: {...user, token: token}});
 
         })
-    })
+    });
 
     auth(req, res, next);
 };

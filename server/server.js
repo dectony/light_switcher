@@ -9,7 +9,8 @@ require('./config/express')(app, config);
 require('./config/mongoose')(config);
 require('./config/passport')(config);
 require('./config/routes')(app);
-require('./config/jwt')(config);
+//require('./config/jwt')(config);
+var myJWT  = require('./config/jwt')(config);
 
 
 

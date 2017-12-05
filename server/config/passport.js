@@ -1,7 +1,6 @@
 var mongoose = require('mongoose'),
     passport = require('passport'),
-    passportJWT = require('passport-jwt'),
-    jwt = require("jwt-simple");
+    passportJWT = require('passport-jwt');
 
     localStrategy  = require('passport-local').Strategy;
     User = mongoose.model('User');
@@ -16,8 +15,8 @@ module.exports = function(config){
         jwtFromRequest: extractJWT.fromAuthHeaderAsBearerToken()
     };
     var strategy = new JwtStrategy(params, function(payload, done){
-        User.findOne({userName:payload.username}).exec(function(err, user){
-            if(user && user.Authenticated(payload.password)){
+        User.findById(payload.id).exec(function(err, user){
+            if(user){
                 return done(null, user);
             }else{
                 return done(null, false)

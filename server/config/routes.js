@@ -16,7 +16,8 @@ module.exports = function (app) {
 
     app.use(function(req, res, next) {
         res.header("Access-Control-Allow-Origin", "*");
-        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+        res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH,OPTIONS');
         next();
     });
 
@@ -27,7 +28,7 @@ module.exports = function (app) {
     })
 
     //app.get('/api/users', auth.requiresRole('admin'), users.getUsers);
-    app.get('/api/users', users.getUsers);
+    app.get('/api/users', passport.authenticate('jwt', { session: false }), users.getUsers);
 
     app.post('/api/users', users.createUser);
 

@@ -32,7 +32,7 @@ function login(username, password) {
                 localStorage.setItem('user', JSON.stringify(res.user));
             }
 
-            return user;
+            return res.user;
         });
 }
 
@@ -87,7 +87,7 @@ function _delete(id) {
         headers: authHeader()
     };
 
-    return fetch(config.apiUrl + '/users/' + id, requestOptions).then(handleResponse);;
+    return fetch(config.apiUrl + '/api/users/' + id, requestOptions).then(handleResponse);;
 }
 
 function handleResponse(response) {

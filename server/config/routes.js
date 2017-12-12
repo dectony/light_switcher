@@ -31,6 +31,7 @@ module.exports = function (app) {
     app.get('/api/users', passport.authenticate('jwt', { session: false }), users.getUsers);
 
     app.post('/api/users', users.createUser);
+    app.delete('/api/users/:id', passport.authenticate('jwt', { session: false }), users.deleteUser);
 
 
     app.get('/api/cars', cars.getCars);

@@ -53,6 +53,6 @@ exports.createDefaultUsers = function () {
             User.create({firstName: 'Irene', lastName: 'Zasenka', userName: 'ber', salt: salt, hashed_password: hash});
         }
     })
-}
+};
 
 exports.UserModel = userSchema;

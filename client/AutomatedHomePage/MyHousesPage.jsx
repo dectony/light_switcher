@@ -2,22 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { homeActions } from '../_actions';
 
-class CreateHomePage extends React.Component {
-    constructor(props) {
-        super(props);
+import { houseActions } from '../_actions';
 
-        this.state = {
-            home: {
-                title: '',
-                rooms: []
-            },
-            submitted: false
-        };
-
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+class MyHousesPage extends React.Component {
+    componentDidMount() {
+        this.props.dispatch(houseActions.getUserHouses(this.props.user._id));
     }
 
     handleChange(e) {
@@ -29,11 +19,11 @@ class CreateHomePage extends React.Component {
         e.preventDefault();
 
         this.setState({ submitted: true });
-        // const { username, password } = this.state;
-        // const { dispatch } = this.props;
-        // if (username && password) {
-        //     dispatch(userActions.login(username, password));
-        // }
+         const { title } = this.state;
+         const { dispatch } = this.props;
+         if (title) {
+             dispatch(homeActions.login(username, password));
+         }
     }
 
     render() {
@@ -64,11 +54,13 @@ class CreateHomePage extends React.Component {
 }
 
 function mapStateToProps(state) {
-    const { creating } = state.creation;
+    const { houses, authentication } = state;
+    const { user } = authentication;
     return {
-        creating
+        user,
+        houses
     };
 }
 
-const connectedCreateHomePage = connect(mapStateToProps)(CreateHomePage);
-export { connectedCreateHomePage as CreateHomePage };
+const connectedCreateHomePage = connect(mapStateToProps)(MyHousesPage);
+export { connectedCreateHomePage as MyHousesPage };

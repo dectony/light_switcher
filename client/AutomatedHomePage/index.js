@@ -1,1 +1,2 @@
-export * from "./CreateHomePage"
+export * from "./MyHousesPage"
+export * from "./EditHomePage"

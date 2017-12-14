@@ -7,7 +7,7 @@ import { PrivateRoute } from './_components';
 import { HomePage } from './HomePage';
 import { LoginPage } from './LoginPage';
 import { RegisterPage } from './RegisterPage';
-import { CreateHomePage } from './AutomatedHomePage';
+import { MyHousesPage } from './AutomatedHomePage';
 
 import { store } from './_helpers';
 import { history } from './_helpers';
@@ -21,7 +21,7 @@ render(
                     <PrivateRoute exact path="/" component={HomePage} />
                     <Route path="/login" component={LoginPage} />
                     <Route path="/register" component={RegisterPage} />
-                    <Route path="/homes" component={CreateHomePage} />
+                    <Route path="/houses" component={MyHousesPage} />
                 </App>
             </div>
         </Router>

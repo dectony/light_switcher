@@ -19,7 +19,7 @@ export default class MyNavigationBar extends React.Component {
         return (
             <div>
                 <ul role="nav">
-                    <li><Link to="/homes">Homes</Link></li>
+                    <li><Link to="/houses">MyHouses</Link></li>
                     <li><Link to="/repos">Repos</Link></li>
                     <li><Link to="/">Home</Link></li>
                 </ul>

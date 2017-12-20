@@ -19,6 +19,7 @@ exports.authenticate = function (req, res, next) {
             }
             var token  = jwt.encode({id: user._id}, 'secret');
             //var token  = myJWT.getToken(user._id);
+            user = user.toObject();
             res.send({success: true, user: {...user, token: token}});
 
         })

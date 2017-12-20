@@ -2,7 +2,9 @@ import { authHeader, config } from '../_helpers';
 
 export const houseService = {
     addNewHouse,
-    getUserHouses
+    getUserHouses,
+    getHouseById,
+    _delete
 };
 
 function addNewHouse(house){
@@ -22,6 +24,24 @@ function getUserHouses(userId){
     };
 
     return fetch(config.apiUrl + '/api/houses/' + userId, requestOptions).then(handleResponse);
+}
+
+function getHouseById(id){
+    const requestOptions = {
+        method: 'GET',
+        headers: authHeader()
+    };
+
+    return fetch(config.apiUrl + '/api/house/' + id, requestOptions).then(handleResponse);
+}
+
+function _delete(id) {
+    const requestOptions = {
+        method: 'DELETE',
+        headers: authHeader()
+    };
+
+    return fetch(config.apiUrl + '/api/houses/' + id, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {

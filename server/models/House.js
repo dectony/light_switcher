@@ -1,10 +1,13 @@
 var mongoose = require('mongoose');
-
 var Schema = mongoose.Schema;
 
-var homeSchema = new Schema({
+var houseSchema =  new Schema({
     title: {type: String, required: true},
     description: {type: String, required: true},
+    owner: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    },
     occupants: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
@@ -12,7 +15,4 @@ var homeSchema = new Schema({
     createdDate: {type: Date, default: Date.now}
 });
 
-
-var Home = mongoose.model('Home', homeSchema);
-
-module.exports.HomeModel = homeSchema;
+module.exports = mongoose.model('House', houseSchema);

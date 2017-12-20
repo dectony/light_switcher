@@ -1,3 +1,3 @@
 export * from "./MyHousesPage"
-export * from "./EditHomePage"
+export * from "./EditHousePage"
 export * from "./_newHouse"

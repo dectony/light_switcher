@@ -1,21 +1,53 @@
 import { houseConstants } from '../_constants';
 
-export function houses(state = {}, action) {
+export function houses(state = {creating:false, items:[]}, action) {
     switch (action.type) {
         case houseConstants.CREATE_REQUEST:
-            return { creating: true };
+            return {...state, creating: true };
         case houseConstants.CREATE_FAILURE:
             return {};
         case houseConstants.CREATE_SUCCESS:
-            return {};
+            return {
+                items: [...state.items, action.house]
+            };
+
         case houseConstants.GET_HOUSES_REQUEST:
-            return { loading: true };
+            return {...state, loading: true };
         case houseConstants.GET_HOUSES_SUCCESS:
             return {
-                items: action.houses
+                ...state, items: action.houses
             };
         case houseConstants.GET_HOUSES_FAILURE:
             return {};
+
+
+        case houseConstants.DELETE_REQUEST:
+            return {
+                ...state,
+                items: state.items.map(house =>
+                    house._id === action.id
+                        ? { ...house, deleting: true }
+                        : house
+                )
+            };
+        case houseConstants.DELETE_SUCCESS:
+            return {
+                ...state, items: state.items.filter(house => house._id !== action.id)
+            };
+        case houseConstants.DELETE_FAILURE:
+            return {
+                ...state,
+                items: state.items.map(house => {
+                    if (house._id === house.id) {
+                        // make copy of user without 'deleting:true' property
+                        const { deleting, ...houseCopy } = house;
+                        // return copy of user with 'deleteError:[error]' property
+                        return { ...houseCopy, deleteError: action.error };
+                    }
+
+                    return house;
+                })
+            };
         default:
             return state
     }

@@ -3,7 +3,7 @@ var mongoose = require('mongoose'),
     auth = require('./auth'),
     users = require('../controllers/users'),
     cars = require('../controllers/cars'),
-    auctions = require('../controllers/auctions'),
+    houses = require('../controllers/houses'),
     bids = require('../controllers/bids'),
     User = mongoose.model('User'),
     upload = require('../config/multer').upload;
@@ -33,19 +33,23 @@ module.exports = function (app) {
     app.post('/api/users', users.createUser);
     app.delete('/api/users/:id', passport.authenticate('jwt', { session: false }), users.deleteUser);
 
-
     app.get('/api/cars', cars.getCars);
     app.get('/api/cars/:id', cars.getCarById);
     app.post('/api/cars', cars.addCar);
     app.put('/api/cars/:id', cars.updateCar);
     app.delete('/api/cars/:id', cars.deleteCar);
 
-    app.get('/api/auctions', auctions.getAuctions);
-    app.get('/api/auctions/:id', auctions.getAuctionById);
-    //app.get('/api/auctions/:createdBy', auctions.getAuctionsByUser);
-    app.post('/api/auctions', auctions.addAuction);
-    app.put('/api/auctions/:id', auctions.updateAuction);
-    app.delete('/api/auctions/:id', auctions.deleteAuction);
+    app.post('/api/houses', houses.createHouse);
+    app.get('/api/houses/:id', houses.getUserHouses);
+    app.delete('/api/houses/:id', passport.authenticate('jwt', { session: false }), houses.deleteHouse);
+    app.get('/api/house/:id', passport.authenticate('jwt', { session: false }), houses.getById);
+
+    // app.get('/api/auctions', auctions.getAuctions);
+    // app.get('/api/auctions/:id', auctions.getAuctionById);
+    // app.get('/api/auctions/:createdBy', auctions.getAuctionsByUser);
+    // app.post('/api/auctions', auctions.addAuction);
+    // app.put('/api/auctions/:id', auctions.updateAuction);
+    // app.delete('/api/auctions/:id', auctions.deleteAuction);
 
     app.get('/api/bids', bids.getBidsByAuction);
     app.get('/api/bids/:id', bids.getLastBidByAuction);

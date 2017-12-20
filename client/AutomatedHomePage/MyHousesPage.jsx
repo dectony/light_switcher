@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { House } from './house'
 import  NewHouse  from './_newHouse'
+import { Link } from 'react-router-dom'
 
 
 import { houseActions } from '../_actions';
@@ -12,7 +13,20 @@ class MyHousesPage extends React.Component {
     }
 
     handleAddNewHouse(houseTitle) {
-        this.props.dispatch(houseActions.addNewHouse(houseTitle));
+        var newHouse = {
+            title: houseTitle,
+            description: 'House of ' + this.props.user.firstName,
+            owner: this.props.user
+        };
+        this.props.dispatch(houseActions.addNewHouse(newHouse));
+    }
+
+    handleDelete(houseId) {
+        return (e) => this.props.dispatch(houseActions.delete(houseId));
+    }
+
+    handleManage(houseId) {
+        return (e) => this.props.dispatch(houseActions.delete(houseId));
     }
 
     render() {
@@ -28,8 +42,9 @@ class MyHousesPage extends React.Component {
                                 {
                                     house.deleting ? <em> - Deleting...</em>
                                         : house.deleteError ? <span className="text-danger"> - ERROR: {house.deleteError}</span>
-                                        : <span> - <a onClick={this.handleDeleteUser(house._id)}>Delete</a></span>
+                                        : <span> - <a onClick={this.handleDelete(house._id)}>Delete</a></span>
                                 }
+                                <span> - <Link to={'/edit/house/' + house._id }>Manage</Link></span>
                             </li>
                         )}
                     </ul>

@@ -14,7 +14,7 @@ class EditHousePage extends React.Component {
         const {editHouse} = this.props;
         return(
             <div className="col-md-6 col-md-offset-3">
-                <h1>Edit</h1>
+                <h1>Edit {editHouse.item && editHouse.item.title}</h1>
                 {editHouse.item &&
                 <div>
                     {editHouse.item.title}

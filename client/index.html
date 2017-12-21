@@ -5,8 +5,108 @@
     <title>React + Redux - Light Switcher</title>
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
     <style>
-        a { cursor: pointer; }
+        html {
+            height: 100%;
+        }
+        body {
+            height: 100%;
+            background: #444;
+            color: #fffce1;
+            font-family: 'Raleway', Arial, sans-serif;
+        }
+        #app {
+            height: 100%;
+        }
+        a {
+            text-decoration: none;
+        }
+        a:hover,
+        a:focus {
+            color: #c94e50;
+        }
+        main {
+            height: 100%;
+            padding: 3em 2em;
+            text-align: center;
+            background: #b4bad2;
+            overflow: scroll;
+        }
+        h1 {
+            font-weight: 800;
+            font-size: 3.75em;
+        }
+        .description {
+            max-width: 20em;
+            margin: 1.2em auto 1em;
+            line-height: 1.3em;
+            font-weight: 400;
+        }
+
         .help-block { font-size: 12px; }
+
+        /* Position and sizing of burger button */
+        .bm-burger-button {
+            position: fixed;
+            width: 36px;
+            height: 30px;
+            left: 36px;
+            top: 36px;
+        }
+
+        /* Color/shape of burger icon bars */
+        .bm-burger-bars {
+            background: #373a47;
+        }
+
+        /* Position and sizing of clickable cross button */
+        .bm-cross-button {
+            height: 24px;
+            width: 24px;
+        }
+
+        /* Color/shape of close button cross */
+        .bm-cross {
+            background: #bdc3c7;
+        }
+
+        /* General sidebar styles */
+        .bm-menu {
+            background: #373a47;
+            padding: 2.5em 1.5em 0;
+            font-size: 1.15em;
+        }
+
+        .bm-menu a {
+            color: #b8b7ad;
+        }
+        .bm-menu a:hover,
+        .bm-menu a:focus {
+            color: #c94e50;
+        }
+        .bm-item-list a {
+            padding: 0.8em;
+        }
+        .bm-item-list a span {
+            margin-left: 10px;
+            font-weight: 700;
+        }
+
+
+        /* Morph shape necessary with bubble or elastic */
+        .bm-morph-shape {
+            fill: #373a47;
+        }
+
+        /* Wrapper for item list */
+        .bm-item-list {
+            color: #b8b7ad;
+            padding: 0.8em;
+        }
+
+        /* Styling of overlay */
+        .bm-overlay {
+            background: rgba(0, 0, 0, 0.3);
+        }
     </style>
 </head>
 <body>

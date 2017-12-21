@@ -23,10 +23,10 @@ class App extends React.Component {
     render() {
         const { alert } = this.props;
         return (
-            <div className="jumbotron">
-                <div className="container">
+            <div id="outer-container">
+                <div>
                     <MyNavigationBar/>
-                    <div className="col-sm-8 col-sm-offset-2">
+                    <div className="col-sm-8 col-sm-offset-2" id="page-wrap">
                         {alert.message &&
                         <div className={`alert ${alert.type}`}>{alert.message}</div>
                         }

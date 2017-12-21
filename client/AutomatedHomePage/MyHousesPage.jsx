@@ -35,16 +35,18 @@ class MyHousesPage extends React.Component {
             <div className="col-md-6 col-md-offset-3">
                 <h1>My Houses</h1>
                 {houses.items &&
-                    <ul>
+                    <ul class="list-group">
                         {houses.items.map((house, index) =>
-                            <li key={house._id}>
+                            <li class="list-group-item list-group-item-info" key={house._id}>
                                 {house.title}
                                 {
                                     house.deleting ? <em> - Deleting...</em>
                                         : house.deleteError ? <span className="text-danger"> - ERROR: {house.deleteError}</span>
-                                        : <span> - <a onClick={this.handleDelete(house._id)}>Delete</a></span>
+                                        : <button type="button"  class="btn btn-default" onClick={this.handleDelete(house._id)}>
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                        </button>
                                 }
-                                <span> - <Link to={'/edit/house/' + house._id }>Manage</Link></span>
+                                <span><Link to={'/edit/house/' + house._id }><span class="glyphicon glyphicon-pencil"></span></Link></span>
                             </li>
                         )}
                     </ul>

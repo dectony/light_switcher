@@ -36,12 +36,17 @@ export default class NewHouse extends React.Component {
         return(
             <form name="form">
                 <div className={'form-group' + (submitted && !houseTitle ? ' has-error' : '')}>
-                    <label htmlFor="firstName">House title</label>
-                    <input type="text" className="form-control" name="houseTitle" value={houseTitle} onChange={this.handleChange} />
-                    {submitted && !houseTitle &&
+                    <div class="col-lg-6">
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="houseTitle" value={houseTitle} onChange={this.handleChange} placeholder="Type house title here..." />
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" onClick={this.handleSubmit} type="button">Go!</button>
+                            </span>
+                        </div>
+                        {submitted && !houseTitle &&
                         <div className="help-block">house title is required</div>
-                    }
-                    <button className="btn btn-primary" onClick={this.handleSubmit}>+</button>
+                        }
+                    </div>
                 </div>
             </form>
         )

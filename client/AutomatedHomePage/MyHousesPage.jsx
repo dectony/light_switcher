@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { House } from './house'
-import  NewHouse  from './_newHouse'
+import  NewItemTextBox  from './_newItemTextBox'
 import { Link } from 'react-router-dom'
 
 
@@ -51,7 +51,7 @@ class MyHousesPage extends React.Component {
                         )}
                     </ul>
                 }
-                <NewHouse onClick = {(houseTitle) => this.handleAddNewHouse(houseTitle)}/>
+                <NewItemTextBox onClick = {(houseTitle) => this.handleAddNewHouse(houseTitle)}/>
             </div>
         )
     }

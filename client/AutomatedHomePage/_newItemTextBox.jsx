@@ -1,11 +1,11 @@
 import React from 'react'
 
-export default class NewHouse extends React.Component {
+export default class NewItemTextBox extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            houseTitle: '',
+            itemValue: '',
             submitted: false
         };
 
@@ -16,35 +16,35 @@ export default class NewHouse extends React.Component {
     handleChange(event) {
         const { value } = event.target;
         this.setState({
-            houseTitle: value
+            itemValue: value
         });
     }
 
     handleSubmit(event) {
         event.preventDefault();
         this.setState({ submitted: true });
-        const { houseTitle } = this.state;
+        const { itemValue } = this.state;
         const { onClick } = this.props;
-        if (houseTitle) {
-            onClick(houseTitle);
+        if (itemValue) {
+            onClick(itemValue);
         }
     }
 
 
     render() {
-        const { houseTitle, submitted } = this.state;
+        const { itemValue, submitted } = this.state;
         return(
             <form name="form">
-                <div className={'form-group' + (submitted && !houseTitle ? ' has-error' : '')}>
+                <div className={'form-group' + (submitted && !itemValue ? ' has-error' : '')}>
                     <div class="col-lg-6">
                         <div class="input-group">
-                            <input type="text" class="form-control" name="houseTitle" value={houseTitle} onChange={this.handleChange} placeholder="Type house title here..." />
+                            <input type="text" class="form-control" name="itemValue" value={itemValue} onChange={this.handleChange} placeholder="Enter value here..." />
                             <span class="input-group-btn">
-                                <button class="btn btn-default" onClick={this.handleSubmit} type="button">Go!</button>
+                                <button class="btn btn-default" onClick={this.handleSubmit} type="button">Add</button>
                             </span>
                         </div>
-                        {submitted && !houseTitle &&
-                        <div className="help-block">house title is required</div>
+                        {submitted && !itemValue &&
+                        <div className="help-block">Value is required</div>
                         }
                     </div>
                 </div>

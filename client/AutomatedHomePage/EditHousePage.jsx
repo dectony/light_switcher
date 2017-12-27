@@ -21,6 +21,16 @@ class EditHousePage extends React.Component {
                     {editHouse.item.description}
                 </div>
                 }
+                {editHouse.item.rooms.length > 0 &&
+                <ul class="list-group">
+                    {editHouse.item.rooms.map((room, index) =>
+                        <li class="list-group-item list-group-item-info" key={room._id}>
+                            {room.title}
+                        </li>
+                    )}
+                </ul>
+                }
+                <NewItemTextBox onClick = {(houseTitle) => this.handleAddNewHouse(houseTitle)}/>
             </div>
         )
     }

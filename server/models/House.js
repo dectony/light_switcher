@@ -12,6 +12,10 @@ var houseSchema =  new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     }],
+    rooms: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Room'
+    }],
     createdDate: {type: Date, default: Date.now}
 });
 

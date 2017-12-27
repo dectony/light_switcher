@@ -1,12 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { houseActions } from '../_actions'
+import  NewItemTextBox  from './_newItemTextBox'
+import { houseActions, roomsActions } from '../_actions'
+
 
 
 class EditHousePage extends React.Component {
 
     componentWillMount() {
         this.props.dispatch(houseActions.getHouse(this.props.match.params.houseId));
+        this.props.dispatch(roomsActions.getRooms(this.props.match.params.houseId));
+    }
+
+    handleAddNewRoom(roomTitle) {
+        const newRoom = {
+            title: roomTitle,
+            house: this.props.editHouse.item._id,
+        };
+
+        this.props.dispatch(roomsActions.addRoom(newRoom));
     }
 
 
@@ -21,7 +33,7 @@ class EditHousePage extends React.Component {
                     {editHouse.item.description}
                 </div>
                 }
-                {editHouse.item.rooms.length > 0 &&
+                {editHouse.item && editHouse.item.rooms && editHouse.item.rooms.length > 0 &&
                 <ul class="list-group">
                     {editHouse.item.rooms.map((room, index) =>
                         <li class="list-group-item list-group-item-info" key={room._id}>
@@ -30,7 +42,7 @@ class EditHousePage extends React.Component {
                     )}
                 </ul>
                 }
-                <NewItemTextBox onClick = {(houseTitle) => this.handleAddNewHouse(houseTitle)}/>
+                <NewItemTextBox onClick = {(roomTitle) => this.handleAddNewRoom(roomTitle)}/>
             </div>
         )
     }

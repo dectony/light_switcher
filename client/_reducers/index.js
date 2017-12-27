@@ -5,7 +5,8 @@ import { registration } from './registration.reducer';
 import { users } from './users.reducer';
 import { alert } from './alert.reducer';
 import { houses } from './automatedHouse.reducer';
-import { editHouse } from './house.edit.reducer'
+import { editHouse } from './house.edit.reducer';
+import { rooms } from './room.reducer';
 
 const rootReducer = combineReducers({
     authentication,
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
     users,
     alert,
     houses,
-    editHouse
+    editHouse,
+    rooms
 });
 
 export default rootReducer;

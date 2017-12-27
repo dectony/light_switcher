@@ -1,5 +1,6 @@
 var mongoose = require('mongoose'),
-    House = mongoose.model('House');
+    House = mongoose.model('House'),
+    Room  = mongoose.model('Room');
 
 exports.getHouses = function (req, res) {
     House.find().exec(function (err, collection) {
@@ -9,10 +10,10 @@ exports.getHouses = function (req, res) {
 
 exports.getById = function (req, res) {
     var condition = {_id: req.params.id};
-    House.findOne(condition).exec(function (err, home) {
+    House.findOne(condition).populate('rooms').exec(function (err, home) {
         res.send(home);
     })
-}
+};
 
 exports.getUserHouses = function (req, res) {
     var condition = {};
@@ -31,6 +32,7 @@ exports.createHouse = function (req, res) {
 
     console.log('POST - /createHouse');
     var house = new House();
+    house._id = new mongoose.Types.ObjectId();
     house.title = req.body.title;
     house.description = req.body.description;
     house.owner = req.body.owner._id;

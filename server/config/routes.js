@@ -4,6 +4,7 @@ var mongoose = require('mongoose'),
     users = require('../controllers/users'),
     cars = require('../controllers/cars'),
     houses = require('../controllers/houses'),
+    rooms = require('../controllers/rooms'),
     bids = require('../controllers/bids'),
     User = mongoose.model('User'),
     upload = require('../config/multer').upload;
@@ -43,6 +44,11 @@ module.exports = function (app) {
     app.get('/api/houses/:id', houses.getUserHouses);
     app.delete('/api/houses/:id', passport.authenticate('jwt', { session: false }), houses.deleteHouse);
     app.get('/api/house/:id', passport.authenticate('jwt', { session: false }), houses.getById);
+
+    app.post('/api/rooms', rooms.addRoom);
+    app.get('/api/rooms/:id', rooms.getRooms);
+    app.delete('/api/rooms/:id', passport.authenticate('jwt', { session: false }), rooms.deleteRoom);
+    app.get('/api/room/:id', passport.authenticate('jwt', { session: false }), rooms.getById);
 
     // app.get('/api/auctions', auctions.getAuctions);
     // app.get('/api/auctions/:id', auctions.getAuctionById);

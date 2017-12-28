@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { House } from './house'
+import { House } from './'
 import  NewItemTextBox  from './_newItemTextBox'
 import { Link } from 'react-router-dom'
 
@@ -38,7 +38,7 @@ class MyHousesPage extends React.Component {
                     <ul class="list-group">
                         {houses.items.map((house, index) =>
                             <li class="list-group-item list-group-item-info" key={house._id}>
-                                {house.title}
+                                <Link to={'/house/manage/' + house._id }>{house.title}</Link>
                                 {
                                     house.deleting ? <em> - Deleting...</em>
                                         : house.deleteError ? <span className="text-danger"> - ERROR: {house.deleteError}</span>

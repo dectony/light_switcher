@@ -6,6 +6,7 @@
   "dependencies": {
     "history": "^4.6.3",
     "react": "^16.0.0",
+    "react-accessible-accordion": "^1.0.2",
     "react-burger-menu": "^2.1.11",
     "react-dom": "^16.0.0",
     "react-popper": "^0.7.4",

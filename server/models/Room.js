@@ -6,7 +6,11 @@ var roomSchema =  new Schema({
     house: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'House'
-    }
+    },
+    devices: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Device'
+    }]
 });
 
 module.exports = mongoose.model('Room', roomSchema);

@@ -1,0 +1,95 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { browserHistory } from 'react-router'
+
+import Select from 'react-select';
+
+
+class NewDevicePage extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            title: '',
+            type: '',
+            deviceId: '',
+            selectedOption: '',
+            submitted: false
+        };
+
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleTypeChange = this.handleTypeChange.bind(this);
+    }
+
+    handleTypeChange(selectedOption)  {
+        this.setState({ selectedOption });
+    };
+
+    handleChange(e) {
+        const { name, value } = e.target;
+        this.setState({ [name]: value });
+    }
+
+    handleSubmit(e) {
+        e.preventDefault();
+
+        this.setState({ submitted: true });
+        // const { username, password } = this.state;
+        // const { dispatch } = this.props;
+        // if (username && password) {
+        //     dispatch(userActions.login(username, password));
+        // }
+    }
+
+    render() {
+        const { title, deviceId, submitted } = this.state;
+        const { selectedOption } = this.state;
+        const type = selectedOption && selectedOption.value;
+        return(
+            <div className="col-md-6 col-md-offset-3">
+                <h1>New Device</h1>
+                <div className={'form-group' + (submitted && !title ? ' has-error' : '')}>
+                    <label htmlFor="title">Title</label>
+                    <input type="text" className="form-control" name="title" value={title} onChange={this.handleChange} />
+                    {submitted && !title &&
+                    <div className="help-block">Title is required</div>
+                    }
+                </div>
+                <Select
+                    name="form-field-name"
+                    value={type}
+                    onChange={this.handleTypeChange}
+                    options={[
+                        { value: 'one', label: 'LightSwitcher' },
+                        { value: 'two', label: 'IP Cam' },
+                    ]}
+                />
+                <div className={'form-group' + (submitted && !deviceId ? ' has-error' : '')}>
+                    <label htmlFor="deviceId">deviceId</label>
+                    <input type="text" className="form-control" name="deviceId" value={deviceId} onChange={this.handleChange} />
+                    {submitted && !deviceId &&
+                    <div className="help-block">deviceId is required</div>
+                    }
+                </div>
+                <div className="form-group">
+                    <button className="btn btn-primary">Add</button>
+                    <Link to="/house/manage" className="btn btn-link">Cancel</Link>
+                </div>
+            </div>
+        )
+    }
+}
+
+function mapStateToProps(state) {
+    const { users, authentication } = state;
+    const { user } = authentication;
+    return {
+        user,
+        users
+    };
+}
+
+const connectedNewDevicePage = connect(mapStateToProps)(NewDevicePage);
+export { connectedNewDevicePage as NewDevicePage };

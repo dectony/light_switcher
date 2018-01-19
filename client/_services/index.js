@@ -1,2 +1,3 @@
 export * from './user.service';
-export * from './home.service';
+export * from './house.service';
+export * from './device.service';

@@ -7,6 +7,7 @@ import { PrivateRoute } from './_components';
 import { HomePage } from './HomePage';
 import { LoginPage } from './LoginPage';
 import { RegisterPage } from './RegisterPage';
+import { NewDevicePage } from './DeviceComponents';
 import { MyHousesPage, EditHousePage, ManageHousePage } from './AutomatedHomePage';
 
 
@@ -25,6 +26,7 @@ render(
                     <Route path="/houses" component={MyHousesPage} />
                     <Route path="/edit/house/:houseId" component={EditHousePage}/>
                     <Route path="/house/manage/:houseId" component={ManageHousePage}/>
+                    <Route path="/device/add/:roomId" component={NewDevicePage}/>
                 </App>
             </div>
         </Router>

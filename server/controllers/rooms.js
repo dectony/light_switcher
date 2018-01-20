@@ -12,7 +12,7 @@ exports.getById = function (req, res) {
 exports.getRooms = function (req, res) {
     var condition = {};
     condition = {house: req.params.id};
-    Room.find(condition).exec(function (err, collection) {
+    Room.find(condition).populate('devices').exec(function (err, collection) {
         res.send(collection);
     })
 };

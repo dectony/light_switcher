@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { browserHistory } from 'react-router'
+import { devicesActions } from '../_actions';
 
 import Select from 'react-select';
 
@@ -36,11 +36,14 @@ class NewDevicePage extends React.Component {
         e.preventDefault();
 
         this.setState({ submitted: true });
-        // const { username, password } = this.state;
-        // const { dispatch } = this.props;
-        // if (username && password) {
-        //     dispatch(userActions.login(username, password));
-        // }
+        const device = {
+            title: this.state.title,
+            type: this.state.selectedOption.value,
+            deviceId: this.state.deviceId,
+            roomId: this.props.match.params.roomId
+        };
+        const { dispatch } = this.props;
+        dispatch(devicesActions.addDevice(device));
     }
 
     render() {
@@ -74,7 +77,7 @@ class NewDevicePage extends React.Component {
                     }
                 </div>
                 <div className="form-group">
-                    <button className="btn btn-primary">Add</button>
+                    <button onClick={this.handleSubmit} className="btn btn-primary">Add</button>
                     <Link to="/house/manage" className="btn btn-link">Cancel</Link>
                 </div>
             </div>

@@ -7,6 +7,7 @@ import { alert } from './alert.reducer';
 import { houses } from './automatedHouse.reducer';
 import { editHouse } from './house.edit.reducer';
 import { rooms } from './room.reducer';
+import { devices } from './devices.reducer';
 
 const rootReducer = combineReducers({
     authentication,

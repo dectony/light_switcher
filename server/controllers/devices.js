@@ -21,7 +21,9 @@ exports.addDevice = function (req, res) {
     console.log('POST - /addDevice');
     var device = new Device();
     device.title = req.body.title;
-    device.room = new mongoose.mongo.ObjectId(req.body.room);
+    device.type = req.body.type;
+    device.deviceId = req.body.deviceId;
+    device.room = req.body.roomId;
 
     device.save(function (err, device) {
         if (err) {

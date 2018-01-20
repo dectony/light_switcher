@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 
 var deviceSchema =  new Schema({
     title: {type: String, required: true},
-    description: {type: String, required: true},
+    deviceId: {type: String, required: true},
     type: {type: String, required: true},
     room: {
         type: mongoose.Schema.Types.ObjectId,

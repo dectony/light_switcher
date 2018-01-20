@@ -10,7 +10,10 @@ exports.getHouses = function (req, res) {
 
 exports.getById = function (req, res) {
     var condition = {_id: req.params.id};
-    House.findOne(condition).populate('rooms').exec(function (err, home) {
+    House.findOne(condition).populate({
+        path: 'rooms',
+        populate: { path: 'devices' }
+    }).exec(function (err, home) {
         res.send(home);
     })
 };

@@ -37,6 +37,14 @@ class ManageHousePage extends React.Component {
                                 <AccordionItem key={room._id}>
                                     <AccordionItemTitle><h3 className="u-position-relative">{room.title}<div class="accordion__arrow" role="presentation"></div></h3></AccordionItemTitle>
                                     <AccordionItemBody>
+                                        {room.devices &&
+                                        <ul>
+                                            {room.devices.map((device, index) =>
+                                                <li key={device._id}>
+                                                    {device.title + ' ' + device.type}
+                                                </li>
+                                            )}
+                                        </ul>}
                                         <Link to={'/device/add/' + room._id }>New device...</Link>
                                     </AccordionItemBody>
                                 </AccordionItem>

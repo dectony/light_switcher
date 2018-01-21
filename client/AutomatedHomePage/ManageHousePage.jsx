@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Modal from 'react-accessible-modal'
 import { Link } from 'react-router-dom'
+import { getDeviceComponentByType } from '../DeviceComponents'
 
 import {
     Accordion,
@@ -25,6 +26,12 @@ class ManageHousePage extends React.Component {
         this.props.dispatch(houseActions.getHouse(this.props.match.params.houseId));
     }
 
+    getDeviceComponent(device) {
+        let MultipleDeviceComponent = getDeviceComponentByType(device.type);
+
+        return <MultipleDeviceComponent device = {device} />
+    }
+
     render() {
         const { modalIsOpen, modalAltIsOpen, devices } = this.state;
         const { editHouse  } = this.props;
@@ -35,16 +42,18 @@ class ManageHousePage extends React.Component {
                     <Accordion>
                             {editHouse.item.rooms.map((room, index) =>
                                 <AccordionItem key={room._id}>
-                                    <AccordionItemTitle><h3 className="u-position-relative">{room.title}<div class="accordion__arrow" role="presentation"></div></h3></AccordionItemTitle>
+                                    <AccordionItemTitle>
+                                        <h3 className="u-position-relative">{room.title}
+                                            <div class="accordion__arrow" role="presentation"></div>
+                                        </h3>
+                                    </AccordionItemTitle>
                                     <AccordionItemBody>
                                         {room.devices &&
-                                        <ul>
-                                            {room.devices.map((device, index) =>
-                                                <li key={device._id}>
-                                                    {device.title + ' ' + device.type}
-                                                </li>
+                                            room.devices.map((device, index) =>
+                                                <div key={device._id}>
+                                                    {this.getDeviceComponent(device)}
+                                                </div>
                                             )}
-                                        </ul>}
                                         <Link to={'/device/add/' + room._id }>New device...</Link>
                                     </AccordionItemBody>
                                 </AccordionItem>

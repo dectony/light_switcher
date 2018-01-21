@@ -67,6 +67,7 @@ class NewDevicePage extends React.Component {
                     options={[
                         { value: 'one', label: 'LightSwitcher' },
                         { value: 'two', label: 'IP Cam' },
+                        { value: 'three', label: 'Climate sensor' },
                     ]}
                 />
                 <div className={'form-group' + (submitted && !deviceId ? ' has-error' : '')}>

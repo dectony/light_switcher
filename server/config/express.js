@@ -6,12 +6,7 @@ var express = require('express'),
     passport = require('passport');
 
 module.exports = function(app, config) {
-    function compile(str, path) {
-        return stylus(str).set('filename', path);
-    }
-
 //if ('development' == env) {
-    app.set('views', config.rootPath + '/Server/Views');
     app.set('view engine', 'html');
     app.use(morgan('dev'));
     app.use(bodyParser());

@@ -31,8 +31,8 @@ exports.createDefaultUsers = function () {
             salt = encryption.createSalt();
             hash = encryption.hashPassword(salt, 'dec');
             User.create({
-                firstName: 'Anton',
-                lastName: 'Zasenka',
+                firstName: 'Luke',
+                lastName: 'Skywalker',
                 userName: 'dec',
                 salt: salt,
                 hashed_password: hash,
@@ -41,8 +41,8 @@ exports.createDefaultUsers = function () {
             salt = encryption.createSalt();
             hash = encryption.hashPassword(salt, 'hex');
             User.create({
-                firstName: 'Alex',
-                lastName: 'Zasenka',
+                firstName: 'Anakin',
+                lastName: 'Skywalker',
                 userName: 'hex',
                 salt: salt,
                 hashed_password: hash,
@@ -50,7 +50,12 @@ exports.createDefaultUsers = function () {
             });
             salt = encryption.createSalt();
             hash = encryption.hashPassword(salt, 'ber');
-            User.create({firstName: 'Irene', lastName: 'Zasenka', userName: 'ber', salt: salt, hashed_password: hash});
+            User.create({
+                firstName: 'Obi-Wan',
+                lastName: 'Kenobi',
+                userName: 'ber',
+                salt: salt,
+                hashed_password: hash});
         }
     })
 };

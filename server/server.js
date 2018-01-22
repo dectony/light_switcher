@@ -1,9 +1,9 @@
-var express = require('express');
+const express = require('express');
 
-var app = express();
-var env = process.env.NODE_ENV || 'development';
+const app = express();
+const env = process.env.NODE_ENV || 'development';
 
-var config = require('./config/config')[env];
+const config = require('./config/config')[env];
 
 require('./config/express')(app, config);
 require('./config/mongoose')(config);

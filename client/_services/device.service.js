@@ -33,7 +33,7 @@ function getDeviceById(id){
         headers: authHeader()
     };
 
-    return fetch(config.apiUrl + '/api/devices/' + id, requestOptions).then(handleResponse);
+    return fetch(config.apiUrl + '/api/device/' + id, requestOptions).then(handleResponse);
 }
 
 function _delete(id) {

@@ -4,7 +4,6 @@ import { House } from './'
 import  NewItemTextBox  from './_newItemTextBox'
 import { Link } from 'react-router-dom'
 
-
 import { houseActions } from '../_actions';
 
 class MyHousesPage extends React.Component {
@@ -34,6 +33,7 @@ class MyHousesPage extends React.Component {
         return (
             <div className="col-md-6 col-md-offset-3">
                 <h1>My Houses</h1>
+                <h2>Here you can add/remove houses</h2>
                 {houses.items &&
                     <ul class="list-group">
                         {houses.items.map((house, index) =>
@@ -41,12 +41,20 @@ class MyHousesPage extends React.Component {
                                 <Link to={'/house/manage/' + house._id }>{house.title}</Link>
                                 {
                                     house.deleting ? <em> - Deleting...</em>
-                                        : house.deleteError ? <span className="text-danger"> - ERROR: {house.deleteError}</span>
-                                        : <button type="button"  class="btn btn-default" onClick={this.handleDelete(house._id)}>
+                                        : house.deleteError
+                                        ? <span className="text-danger"> - ERROR: {house.deleteError}</span>
+                                        : <button type="button"
+                                                  class="btn btn-default"
+                                                  onClick={this.handleDelete(house._id)}>
                                             <span class="glyphicon glyphicon-trash"></span>
                                         </button>
                                 }
-                                <span><Link to={'/edit/house/' + house._id }><span class="glyphicon glyphicon-pencil"></span></Link></span>
+                                    <Link to={'/edit/house/' + house._id }>
+                                        <button type="button"
+                                                class="btn btn-default">
+                                            <span class="glyphicon glyphicon-pencil"></span>
+                                        </button>
+                                    </Link>
                             </li>
                         )}
                     </ul>

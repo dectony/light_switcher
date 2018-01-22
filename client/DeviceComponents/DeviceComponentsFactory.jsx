@@ -1,6 +1,6 @@
 import RelayComponent from './RelayComponent';
 import IpCamComponent from './IpCamComponent';
-import ClimateSensorComponent from './ClimateSensorComponent';
+import { ClimateSensorComponent } from './ClimateSensorComponent';
 
 
 const deviceComponents = [

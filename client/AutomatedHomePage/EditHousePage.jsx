@@ -4,7 +4,6 @@ import  NewItemTextBox  from './_newItemTextBox'
 import { houseActions, roomsActions } from '../_actions'
 
 
-
 class EditHousePage extends React.Component {
 
     componentWillMount() {
@@ -27,6 +26,7 @@ class EditHousePage extends React.Component {
         return(
             <div className="col-md-6 col-md-offset-3">
                 <h1>Edit {editHouse.item && editHouse.item.title}</h1>
+                <h2>Here you can add rooms to the house</h2>
                 {editHouse.item &&
                 <div>
                     {editHouse.item.title}

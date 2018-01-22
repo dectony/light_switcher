@@ -1,11 +1,11 @@
-var passport = require('passport');
-var jwt = require('jwt-simple');
+const passport = require('passport');
+const jwt = require('jwt-simple');
    // myJWT = require('../config/jwt')();
 
 exports.authenticate = function (req, res, next) {
     console.log(req.body);
     req.body.username = req.body.username.toLowerCase();
-    var auth = passport.authenticate('local', function (err, user) {
+    const auth = passport.authenticate('local', function (err, user) {
         if (err) {
             return next(err);
         }
@@ -17,7 +17,7 @@ exports.authenticate = function (req, res, next) {
             if (err) {
                 return next(err);
             }
-            var token  = jwt.encode({id: user._id}, 'secret');
+            const token  = jwt.encode({id: user._id}, 'secret');
             //var token  = myJWT.getToken(user._id);
             user = user.toObject();
             res.send({success: true, user: {...user, token: token}});
@@ -38,4 +38,4 @@ exports.requiresRole = function (role) {
             res.end();
         }
     }
-}
+};

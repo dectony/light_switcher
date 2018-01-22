@@ -1,34 +1,35 @@
-var mongoose = require('mongoose'),
+const mongoose = require('mongoose'),
     Room = mongoose.model('Room'),
-    House = mongoose.model('House');
+    House = mongoose.model('House'),
+    deviceService = require('../services/devicesService');
 
 exports.getById = function (req, res) {
-    var condition = {_id: req.params.id};
+    const condition = {_id: req.params.id};
     Room.findOne(condition).exec(function (err, room) {
         res.send(room);
     })
-}
+};
 
 exports.getRooms = function (req, res) {
-    var condition = {};
-    condition = {house: req.params.id};
-    Room.find(condition).populate('devices').exec(function (err, collection) {
-        res.send(collection);
+    const condition = {house: req.params.id};
+    Room.find(condition).populate('devices').lean().exec(function (err, collection) {
+        let result =collection.map((room) => {return {...room, devices: room.devices.map((device) => deviceService.getDeviceInfo(device))}}) ;
+        //let result ={...result, rooms:collection.map((room) => {...room, devices: devices.map((device) => deviceService.getDeviceInfo(device)))}} ;
+        res.send(result);
     })
 };
 
 exports.addRoom = function (req, res) {
 
     console.log('POST - /addRoom');
-    var room = new Room();
+    const room = new Room();
     room.title = req.body.title;
     room.house = new mongoose.mongo.ObjectId(req.body.house);
 
     room.save(function (err, room) {
         if (err) {
             console.log('Error while saving room: ' + err);
-            res.send({error: err});
-            return;
+            return res.send({error: err});
         } else {
             House.findOne({_id: room.house}).exec(function (err, home) {
                 home.rooms.push(room);

@@ -13,7 +13,7 @@ import {
 
 //import './node_modules/react-accessible-accordion/dist/react-accessible-accordion.css';
 
-import { houseActions } from '../_actions';
+import { roomsActions, devicesActions } from '../_actions';
 
 class ManageHousePage extends React.Component {
     constructor(props) {
@@ -23,24 +23,30 @@ class ManageHousePage extends React.Component {
             modalIsOpen: false,
             modalAltIsOpen: false
         };
-        this.props.dispatch(houseActions.getHouse(this.props.match.params.houseId));
+        //this.props.dispatch(houseActions.getHouse(this.props.match.params.houseId));
+        this.props.dispatch(roomsActions.getRooms(this.props.match.params.houseId));
+        this.props.dispatch(devicesActions.getDevices(this.props.match.params.houseId));
     }
 
     getDeviceComponent(device) {
         let MultipleDeviceComponent = getDeviceComponentByType(device.type);
 
-        return <MultipleDeviceComponent device = {device} />
+        return <MultipleDeviceComponent device = {device} onUpdate = {(deviceId) => this.updateDeviceInfo(deviceId)} />
+    }
+
+    updateDeviceInfo(deviceId) {
+        this.props.dispatch(devicesActions.getDevice(deviceId));
     }
 
     render() {
-        const { modalIsOpen, modalAltIsOpen, devices } = this.state;
-        const { editHouse  } = this.props;
+        const { rooms } = this.props;
         return(<div>
                 <div className="col-md-6 col-md-offset-3">
                     <h1>Manage my house page</h1>
-                    { editHouse.item && editHouse.item.rooms.length > 0 &&
+                    <h2>Here you can see all devices in the house</h2>
+                    { rooms.items && rooms.items.length > 0 &&
                     <Accordion>
-                            {editHouse.item.rooms.map((room, index) =>
+                            {rooms.items.map((room, index) =>
                                 <AccordionItem key={room._id}>
                                     <AccordionItemTitle>
                                         <h3 className="u-position-relative">{room.title}
@@ -67,11 +73,11 @@ class ManageHousePage extends React.Component {
 }
 
 function mapStateToProps(state) {
-    const { editHouse, authentication } = state;
+    const { rooms, authentication } = state;
     const { user } = authentication;
     return {
         user,
-        editHouse
+        rooms
     };
 }
 

@@ -1,4 +1,4 @@
-var mongoose = require('mongoose'),
+const mongoose = require('mongoose'),
     passport = require('passport'),
     auth = require('./auth'),
     users = require('../controllers/users'),
@@ -20,7 +20,7 @@ module.exports = function (app) {
     {
         console.log(req.body);
         console.log(req.file);
-    })
+    });
 
     //app.get('/api/users', auth.requiresRole('admin'), users.getUsers);
     app.get('/api/users', passport.authenticate('jwt', { session: false }), users.getUsers);
@@ -41,7 +41,7 @@ module.exports = function (app) {
     app.get('/api/room/:id', passport.authenticate('jwt', { session: false }), rooms.getById);
 
     app.post('/api/devices', devices.addDevice);
-    app.get('/api/devices/:id', devices.getDevices);
+    app.get('/api/devices/:id', devices.getHouseDevices);
     //app.delete('/api/rooms/:id', passport.authenticate('jwt', { session: false }), rooms.deleteRoom);
     app.get('/api/device/:id', passport.authenticate('jwt', { session: false }), devices.getById);
 
@@ -50,11 +50,11 @@ module.exports = function (app) {
     app.post('/logout', function (req, res) {
         req.logout();
         res.end();
-    })
+    });
 
     app.get('*', function (req, res) {
         res.render('index', {
             bootstrappedUser: req.user
         });
     });
-}
+};

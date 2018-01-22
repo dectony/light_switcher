@@ -38,7 +38,12 @@ export default class NewItemTextBox extends React.Component {
                 <div className={'form-group' + (submitted && !itemValue ? ' has-error' : '')}>
                     <div class="col-lg-6">
                         <div class="input-group">
-                            <input type="text" class="form-control" name="itemValue" value={itemValue} onChange={this.handleChange} placeholder="Enter value here..." />
+                            <input type="text"
+                                   class="form-control"
+                                   name="itemValue"
+                                   value={itemValue}
+                                   onChange={this.handleChange}
+                                   placeholder="Enter value here..." />
                             <span class="input-group-btn">
                                 <button class="btn btn-default" onClick={this.handleSubmit} type="button">Add</button>
                             </span>

@@ -1,20 +1,20 @@
-var mongoose = require('mongoose'),
+const mongoose = require('mongoose'),
     passport = require('passport'),
     passportJWT = require('passport-jwt');
 
     localStrategy  = require('passport-local').Strategy;
     User = mongoose.model('User');
 
-var JwtStrategy  = passportJWT.Strategy;
-var extractJWT = passportJWT.ExtractJwt;
+const JwtStrategy  = passportJWT.Strategy;
+const extractJWT = passportJWT.ExtractJwt;
 
 
 module.exports = function(config){
-    var params = {
+    const params = {
         secretOrKey: config.jwtSecret,
         jwtFromRequest: extractJWT.fromAuthHeaderAsBearerToken()
     };
-    var strategy = new JwtStrategy(params, function(payload, done){
+    const strategy = new JwtStrategy(params, function(payload, done){
         User.findById(payload.id).exec(function(err, user){
             if(user){
                 return done(null, user);
@@ -34,29 +34,19 @@ module.exports = function(config){
             }
         })}));
 
-passport.serializeUser(function(user, done){
-    if(user){
-        done(null, user._id);
-    }
-});
-
-passport.deserializeUser(function(id, done){
-    User.findOne({_id:id}).exec(function(err, user){
+    passport.serializeUser(function(user, done){
         if(user){
-            return done(null, user);
-        }else{
-            return done(null, false);
+            done(null, user._id);
         }
-    })
-});
-    //
-    // return {
-    //     initialize: function() {
-    //         return passport.initialize();
-    //     },
-    //     authenticate: function() {
-    //         return passport.authenticate("jwt", config.jwtSession);
-    //     }
-    // }
+    });
 
+    passport.deserializeUser(function(id, done){
+        User.findOne({_id:id}).exec(function(err, user){
+            if(user){
+                return done(null, user);
+            }else{
+                return done(null, false);
+            }
+        })
+    });
 };

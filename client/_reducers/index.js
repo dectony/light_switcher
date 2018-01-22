@@ -16,7 +16,8 @@ const rootReducer = combineReducers({
     alert,
     houses,
     editHouse,
-    rooms
+    rooms,
+    devices
 });
 
 export default rootReducer;

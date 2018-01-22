@@ -1,8 +1,8 @@
-var mongoose = require('mongoose'),
-    encryption = require('../utilities/encryption')
+const mongoose = require('mongoose'),
+    encryption = require('../utilities/encryption');
 
 
-var userSchema = mongoose.Schema({
+const userSchema = mongoose.Schema({
     firstName: {type: String, required: '{PATH} is required!'},
     lastName: {type: String, required: '{PATH} is required!'},
     userName: {type: String, required: '{PATH} is required!', unique: true},
@@ -19,9 +19,9 @@ userSchema.methods = {
     hasRole: function(role) {
         return this.roles.indexOf(role) > -1;
     }
-}
+};
 
-var User = mongoose.model('User', userSchema);
+const User = mongoose.model('User', userSchema);
 
 //default init
 exports.createDefaultUsers = function () {

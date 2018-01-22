@@ -1,4 +1,4 @@
-var mongoose = require('mongoose'),
+const mongoose = require('mongoose'),
     User = mongoose.model('User'),
     encryption = require('../utilities/encryption');
 
@@ -33,7 +33,7 @@ exports.deleteUser = function (req, res) {
 
 exports.createUser = function (req, res, next) {
     console.log(req.body);
-    var userData = req.body;
+    const userData = req.body;
     userData.userName = userData.userName.toLowerCase();
     userData.salt = encryption.createSalt();
     userData.hashed_password = encryption.hashPassword(userData.salt, userData.password);
@@ -54,4 +54,4 @@ exports.createUser = function (req, res, next) {
             }
         });
     })
-}
+};

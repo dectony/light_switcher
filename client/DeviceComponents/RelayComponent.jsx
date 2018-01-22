@@ -6,13 +6,13 @@ export default class RelayComponent extends React.Component {
         super(props);
 
         this.state = {
-            baconIsReady: false
+            toggleState: this.props.device.isEnabled
         };
         this.handleBaconChange = this.handleBaconChange.bind(this);
     }
 
     handleBaconChange(e) {
-        this.setState({baconIsReady: !this.state.baconIsReady});
+        this.setState({toggleState: !this.state.toggleState});
     }
 
     static get deviceTypes() { return ['one'] }
@@ -22,9 +22,9 @@ export default class RelayComponent extends React.Component {
         return(
             <div>
                 <label>This is relay</label>
-                <span>{device.title + this.state.baconIsReady}</span>
+                <span>{device.title} </span>
                     <Toggle
-                        defaultChecked={this.state.baconIsReady}
+                        defaultChecked={this.state.toggleState}
                         onChange={this.handleBaconChange} />
             </div>
         )

@@ -1,4 +1,4 @@
-var crypto = require('crypto');
+const crypto = require('crypto');
 
 
 exports.createSalt = function(){
@@ -6,6 +6,6 @@ exports.createSalt = function(){
 };
 
 exports.hashPassword = function(salt, password){
-    var hmac = crypto.createHmac('sha1', salt);
+    const hmac = crypto.createHmac('sha1', salt);
     return hmac.update(password).digest('hex');
 };

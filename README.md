@@ -23,7 +23,8 @@ from the command line in the project root folder (where the package.json is loca
 Start the server by running 
 ```
 node server.js
-``` from the command line in the server project root folder
+``` 
+from the command line in the server project root folder
 Start the client by running 
 ```
 npm start

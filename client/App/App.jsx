@@ -15,7 +15,6 @@ class App extends React.Component {
 
         const { dispatch } = this.props;
         history.listen((location, action) => {
-            // clear alert on location change
             dispatch(alertActions.clear());
         });
     }
@@ -28,7 +27,7 @@ class App extends React.Component {
                     <MyNavigationBar/>
                     <div className="col-sm-8 col-sm-offset-2" id="page-wrap">
                         {alert.message &&
-                        <div className={`alert ${alert.type}`}>{alert.message}</div>
+                            <div className={`alert ${alert.type}`}>{alert.message}</div>
                         }
                         {this.props.children}
                     </div>

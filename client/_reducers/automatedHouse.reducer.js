@@ -39,9 +39,7 @@ export function houses(state = {creating:false, items:[]}, action) {
                 ...state,
                 items: state.items.map(house => {
                     if (house._id === house.id) {
-                        // make copy of user without 'deleting:true' property
                         const { deleting, ...houseCopy } = house;
-                        // return copy of user with 'deleteError:[error]' property
                         return { ...houseCopy, deleteError: action.error };
                     }
 

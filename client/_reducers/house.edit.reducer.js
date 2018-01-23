@@ -1,6 +1,5 @@
 import { houseConstants, roomConstants } from '../_constants'
 
-
 export function editHouse(state = {},action) {
     switch(action.type) {
         case houseConstants.GET_HOUSE_REQUEST:

@@ -32,7 +32,9 @@ class ClimateSensorComponent extends React.Component {
 
     render() {
         const { devices } = this.props;
-        const  device  = devices.items ?  devices.items.find(t => (t._id === this.props.device._id)) : this.props.device;
+        const  device  = (devices.items && devices.items.length > 0)
+            ? devices.items.find(t => (t._id === this.props.device._id))
+            : this.props.device;
         return(
             <div>
                 <label>This is climate sensor</label>

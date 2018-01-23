@@ -11,6 +11,7 @@ git clone https://github.com/dectony/light_switcher.git
 ### Prerequisites
 
 NodeJS and NPM from https://nodejs.org/en/download/.
+MongoDB from https://www.mongodb.com/download-center#community
 
 ### Installing
 
@@ -20,6 +21,9 @@ Install all required npm packages by running
 npm install
 ``` 
 from the command line in the project root folder (where the package.json is located).
+
+Start mongoDB server
+
 Start the server by running 
 ```
 node server.js

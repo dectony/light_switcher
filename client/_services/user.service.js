@@ -78,9 +78,11 @@ function update(user) {
 }
 
 function _delete(id) {
+    let user  = localStorage.getItem('user');
     const requestOptions = {
         method: 'DELETE',
-        headers: authHeader()
+        headers: authHeader(),
+        body: JSON.stringify(user)
     };
 
     return fetch(config.apiUrl + '/api/users/' + id, requestOptions).then(handleResponse);;

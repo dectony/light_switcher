@@ -32,7 +32,7 @@ export default class MyNavigationBar extends React.Component {
                     <Link to="/houses"><span className="glyphicon glyphicon glyphicon-home"></span><label className="menuLabel">My Houses</label></Link>
                 </a>
                 <a id="home" className="menu-item">
-                    <Link to="/houses"><span className="glyphicon glyphicon glyphicon-remove"></span><label className="menuLabel">Admin</label></Link>
+                    <Link to="/users"><span className="glyphicon glyphicon glyphicon-remove"></span><label className="menuLabel">Users</label></Link>
                 </a>
                 <a id="home" className="menu-item">
                     <Link to="/houses"><span className="glyphicon glyphicon glyphicon-remove"></span><label className="menuLabel">Test</label></Link>

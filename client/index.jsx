@@ -8,6 +8,7 @@ import { HomePage } from './HomePage';
 import { LoginPage } from './LoginPage';
 import { RegisterPage } from './RegisterPage';
 import { NewDevicePage } from './DeviceComponents';
+import { UsersManagePage } from './UsersManagePage';
 import { MyHousesPage, EditHousePage, ManageHousePage } from './AutomatedHomePage';
 
 
@@ -27,6 +28,7 @@ render(
                     <Route path="/edit/house/:houseId" component={EditHousePage}/>
                     <Route path="/house/manage/:houseId" component={ManageHousePage}/>
                     <Route path="/device/add/:roomId" component={NewDevicePage}/>
+                    <Route path="/users" component={UsersManagePage}/>
                 </App>
             </div>
         </Router>

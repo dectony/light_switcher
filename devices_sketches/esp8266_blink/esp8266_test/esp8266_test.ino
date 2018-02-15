@@ -5,8 +5,8 @@
 #include <Adafruit_INA219.h>
  
 // Connect to the WiFi
-const char* ssid = "decAp";
-const char* password = "*********";
+const char* ssid = "decAP";
+const char* password = "zas-5145";
 const char* mqtt_server = "192.168.1.38";
  
 WiFiClient espClient;
@@ -33,6 +33,7 @@ void callback(char* topic, byte* payload, unsigned int length) {
  
 void reconnect() {
  // Loop until we're reconnected
+  Serial.print("In reconnect");
  while (!client.connected()) {
  Serial.print("Attempting MQTT connection...");
  // Attempt to connect
@@ -45,15 +46,15 @@ void reconnect() {
   Serial.print(client.state());
   Serial.println(" try again in 5 seconds");
   // Wait 5 seconds before retrying
-  delay(5000);
+  delay(10);
   }
  }
 }
  
 void setup()
 {
- Serial.begin(9600);
- 
+ Serial.begin(115200);
+ Serial.print("Connecting");
  client.setServer(mqtt_server, 1883);
  client.setCallback(callback);
  
@@ -62,6 +63,7 @@ void setup()
  
 void loop()
 {
+ Serial.print("Connecting");
  if (!client.connected()) {
   reconnect();
  }

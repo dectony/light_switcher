@@ -16,6 +16,11 @@ exports.Initialize = function(server) {
             console.log('received: %s', message);
         });
 
+        ws.on('error', function (e) {
+            clients.splice(ws);
+            console.error(e.message);
+        });
+
         ws.send('something');
     });
 };

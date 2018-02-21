@@ -29,6 +29,9 @@ module.exports = {
         inject: 'body'
     })],
     devServer: {
+        disableHostCheck: true,
+        port: 5145,
+        host: '192.168.1.38',
         historyApiFallback: true
     }
 }

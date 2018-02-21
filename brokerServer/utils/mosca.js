@@ -1,6 +1,7 @@
 const mosca = require('mosca'),
     mongoose = require('mongoose'),
-    Device = mongoose.model('Device');
+    Device = mongoose.model('Device'),
+    wsSend = require('../utils/ws').SendData;
 
 module.exports = function(){
     const pubsubsettings = {
@@ -28,8 +29,11 @@ module.exports = function(){
 // fired when a message is received
     server.on('published', function(packet, client) {
         console.log('Published', packet.topic);
-        if(client && client.id)
-            updateDeviceValue(client.id, "test");
+        if(client && client.id){
+            console.log('Data from client', packet.payload.toString());
+            updateDeviceValue(client.id, packet.payload.toString());
+            wsSend(packet.payload.toString());
+        }
     });
 
     function updateDeviceValue(deviceId, value){

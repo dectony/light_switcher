@@ -59,7 +59,8 @@ class MyHousesPage extends React.Component {
                         )}
                     </ul>
                 }
-                <NewItemTextBox onClick = {(houseTitle) => this.handleAddNewHouse(houseTitle)}/>
+                <Link to={'/house/add'}>New house...</Link>
+                {/*<NewItemTextBox onClick = {(houseTitle) => this.handleAddNewHouse(houseTitle)}/>*/}
             </div>
         )
     }

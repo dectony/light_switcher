@@ -32,7 +32,7 @@ module.exports = function(){
         if(client && client.id){
             console.log('Data from client', packet.payload.toString());
             updateDeviceValue(client.id, packet.payload.toString());
-            wsSend(packet.payload.toString());
+            wsSend(packet.payload.toString(), client.id);
         }
     });
 
@@ -61,7 +61,7 @@ module.exports = function(){
         device.save(function (err, device) {
             if (err) {
                 if(err.toString().indexOf('E11000') > 1){
-                    err = new Error('Duplicate user');
+                    err = new Error('Duplicate device');
                 }
                 console.log('Error while saving device: ' + err);
             } else {

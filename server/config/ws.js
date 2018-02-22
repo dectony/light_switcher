@@ -14,6 +14,11 @@ exports.Initialize = function(server) {
 
         ws.on('message', function incoming(message) {
             console.log('received: %s', message);
+            let receivedData = JSON.parse(message);
+            switch(receivedData.messageType){
+                case 'DEVICE_UPDATE':
+
+            }
         });
 
         ws.on('error', function (e) {

@@ -53,3 +53,20 @@ exports.addDevice = function (req, res) {
         }
     });
 };
+
+exports.updateDeviceValue = function (deviceId, value){
+    Device.findOne({deviceId: deviceId}).exec(function (err, device) {
+        if (err) {
+            console.log("Device not found", err);
+        }else{
+            device.value = value;
+            device.save(function (err, updatedDevice) {
+                if (err){
+                    console.log("Update failed", err)
+                }else{
+                    console.log("Device was updated")
+                }
+            });
+        }
+    });
+}

@@ -3,7 +3,8 @@ const Schema = mongoose.Schema;
 
 const houseSchema =  new Schema({
     title: {type: String, required: true},
-    description: {type: String, required: true},
+    description: {type: String, required: false},
+    brokerId: {type: String, required: true},
     owner: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'

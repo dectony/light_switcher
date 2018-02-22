@@ -9,7 +9,7 @@ import { LoginPage } from './LoginPage';
 import { RegisterPage } from './RegisterPage';
 import { NewDevicePage } from './DeviceComponents';
 import { UsersManagePage } from './UsersManagePage';
-import { MyHousesPage, EditHousePage, ManageHousePage } from './AutomatedHomePage';
+import { MyHousesPage, EditHousePage, ManageHousePage, NewHousePage } from './AutomatedHomePage';
 
 
 import { store } from './_helpers';
@@ -26,6 +26,7 @@ render(
                     <Route path="/register" component={RegisterPage} />
                     <Route path="/houses" component={MyHousesPage} />
                     <Route path="/edit/house/:houseId" component={EditHousePage}/>
+                    <Route path="/house/add" component={NewHousePage}/>
                     <Route path="/house/manage/:houseId" component={ManageHousePage}/>
                     <Route path="/device/add/:roomId" component={NewDevicePage}/>
                     <Route path="/users" component={UsersManagePage}/>

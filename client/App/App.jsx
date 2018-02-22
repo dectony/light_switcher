@@ -29,6 +29,7 @@ class App extends React.Component {
                         {alert.message &&
                             <div className={`alert ${alert.type}`}>{alert.message}</div>
                         }
+                        <div><button onClick={history.goBack}>Go Back</button></div>
                         {this.props.children}
                     </div>
                 </div>

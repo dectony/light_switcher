@@ -32,6 +32,7 @@ exports.createHouse = function (req, res) {
     house._id = new mongoose.Types.ObjectId();
     house.title = req.body.title;
     house.description = req.body.description;
+    house.brokerId = req.body.brokerId;
     house.owner = req.body.owner._id;
     house.occupants.push(req.body.owner._id);
 

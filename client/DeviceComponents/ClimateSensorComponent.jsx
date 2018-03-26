@@ -14,7 +14,7 @@ class ClimateSensorComponent extends React.Component {
     }
 
     updateMeasures() {
-        this.props.onUpdate(this.props.device._id);
+        this.props.onUpdate(this.props.device.deviceId);
     }
 
     componentWillReceiveProps() {
@@ -28,12 +28,12 @@ class ClimateSensorComponent extends React.Component {
          clearInterval(this.timer);
      }
 
-    static get deviceTypes() { return ['three'] }
+    static get deviceTypes() { return ['CLIMATE_SENSOR'] }
 
     render() {
         const { devices } = this.props;
         const  device  = (devices.items && devices.items.length > 0)
-            ? devices.items.find(t => (t._id === this.props.device._id))
+            ? devices.items.find(t => (t.deviceId === this.props.device.deviceId))
             : this.props.device;
         return(
             <div>

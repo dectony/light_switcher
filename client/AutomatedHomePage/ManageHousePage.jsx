@@ -29,7 +29,7 @@ class ManageHousePage extends React.Component {
     }
 
     getDeviceComponent(device) {
-        let MultipleDeviceComponent = getDeviceComponentByType(device.type);
+        let MultipleDeviceComponent = getDeviceComponentByType(device.deviceType);
 
         return <MultipleDeviceComponent device = {device} onUpdate = {(deviceId) => this.updateDeviceInfo(deviceId)} />
     }
@@ -56,7 +56,7 @@ class ManageHousePage extends React.Component {
                                     <AccordionItemBody>
                                         {room.devices &&
                                             room.devices.map((device, index) =>
-                                                <div key={device._id}>
+                                                <div key={device.deviceId}>
                                                     {this.getDeviceComponent(device)}
                                                 </div>
                                             )}

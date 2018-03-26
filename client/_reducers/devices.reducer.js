@@ -1,11 +1,19 @@
 import { deviceConstants } from '../_constants'
 
-export function devices(state = {},action) {
+export function devices(state = {items:[]},action) {
     switch(action.type) {
         case deviceConstants.GET_DEVICE_REQUEST:
             return {...state, loading: true};
         case deviceConstants.GET_DEVICE_SUCCESS:
-            return {...state, items: state.items.map((device) => device._id === action.device._id ? action.device : device)};
+            if(state.items.find(i => i.deviceId === action.device.deviceId)){
+                return {...state,
+                        items: state.items.map((device) => device.deviceId === action.device.deviceId
+                        ? action.device
+                        : device)};
+            }else{
+                return {...state,
+                    items: [...state.items, action.device]}
+                }
         case deviceConstants.GET_DEVICE_FAILURE:
             return {...state, error: action.error};
 

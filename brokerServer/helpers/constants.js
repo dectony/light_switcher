@@ -1,3 +1,5 @@
-export const constants = {
-    BROKER_ID: 'Test123'
+module.exports = {
+    constants: {
+        BROKER_ID: 'Test123'
+    }
 };

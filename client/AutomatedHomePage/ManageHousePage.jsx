@@ -29,7 +29,7 @@ class ManageHousePage extends React.Component {
     }
 
     getDeviceComponent(device) {
-        let MultipleDeviceComponent = getDeviceComponentByType(device.deviceType);
+        let MultipleDeviceComponent = getDeviceComponentByType(device.type);
 
         return <MultipleDeviceComponent device = {device} onUpdate = {(deviceId) => this.updateDeviceInfo(deviceId)} />
     }
@@ -39,7 +39,7 @@ class ManageHousePage extends React.Component {
     }
 
     render() {
-        const { rooms } = this.props;
+        const { rooms, devices } = this.props;
         return(<div>
                 <div className="col-md-6 col-md-offset-3">
                     <h1>Manage my house page</h1>
@@ -54,12 +54,15 @@ class ManageHousePage extends React.Component {
                                         </h3>
                                     </AccordionItemTitle>
                                     <AccordionItemBody>
-                                        {room.devices &&
-                                            room.devices.map((device, index) =>
-                                                <div key={device.deviceId}>
-                                                    {this.getDeviceComponent(device)}
-                                                </div>
-                                            )}
+                                        <p>Test</p>
+                                        <p>
+                                            {devices.items &&
+                                                devices.items.map((device, index) =>
+                                                    <div key={device.deviceId}>
+                                                        {this.getDeviceComponent(device)}
+                                                    </div>
+                                                )}
+                                        </p>
                                         <Link to={'/device/add/' + room._id }>New device...</Link>
                                     </AccordionItemBody>
                                 </AccordionItem>
@@ -73,10 +76,11 @@ class ManageHousePage extends React.Component {
 }
 
 function mapStateToProps(state) {
-    const { rooms, authentication } = state;
+    const { rooms,devices, authentication } = state;
     const { user } = authentication;
     return {
         user,
+        devices,
         rooms
     };
 }

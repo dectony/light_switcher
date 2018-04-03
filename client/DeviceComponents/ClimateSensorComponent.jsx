@@ -10,7 +10,7 @@ class ClimateSensorComponent extends React.Component {
             humidity: this.props.device.measures.Humidity
         };
         this.updateMeasures = this.updateMeasures.bind(this);
-        this.timer = setInterval(this.updateMeasures, 5000);
+        //this.timer = setInterval(this.updateMeasures, 5000);
     }
 
     updateMeasures() {
@@ -39,8 +39,12 @@ class ClimateSensorComponent extends React.Component {
             <div>
                 <label>This is climate sensor</label>
                 <span>{device.title}</span>
-                <label>Temperature: {device.measures.Temperature}</label>
-                <label>Humidity: {device.measures.Humidity} %</label>
+                <div>
+                    <label>Temperature: </label> {device.measures.Temperature}
+                </div>
+                <div>
+                    <label>Humidity: </label> {device.measures.Humidity} %
+                </div>
             </div>
         )
     }

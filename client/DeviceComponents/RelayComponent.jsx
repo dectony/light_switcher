@@ -12,10 +12,11 @@ export default class RelayComponent extends React.Component {
     }
 
     handleBaconChange(e) {
+        this.props.onUpdate(this.props.device, !this.state.toggleState);
         this.setState({toggleState: !this.state.toggleState});
     }
 
-    static get deviceTypes() { return ['one'] }
+    static get deviceTypes() { return ['RELAY'] }
 
     render() {
         const { device } = this.props;

@@ -4,6 +4,7 @@ const mosca = require('mosca'),
     wsSend = require('../utils/ws').SendData;
 
 module.exports = function(){
+    let test = 1;
     const pubsubsettings = {
         //using ascoltatore
         type: 'mongo',
@@ -29,10 +30,15 @@ module.exports = function(){
 // fired when a message is received
     server.on('published', function(packet, client) {
         console.log('Published', packet.topic);
-        if(client && client.id){
-            console.log('Data from client', packet.payload.toString());
-            updateDeviceValue(client.id, packet.payload.toString());
-            wsSend(packet.payload.toString(), client.id);
+        if(packet.topic === "UPDATE") {
+            if (client && client.id) {
+                console.log('Data from client', packet.payload.toString());
+                updateDeviceValue(client.id, packet.payload.toString());
+                wsSend(packet.payload.toString(), client.id);
+                // server.publish(message, function () {
+                //     console.log('Server has just send ' + testmsg);
+                // })
+            }
         }
     });
 

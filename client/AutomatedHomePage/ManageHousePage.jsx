@@ -31,11 +31,11 @@ class ManageHousePage extends React.Component {
     getDeviceComponent(device) {
         let MultipleDeviceComponent = getDeviceComponentByType(device.type);
 
-        return <MultipleDeviceComponent device = {device} onUpdate = {(deviceId) => this.updateDeviceInfo(deviceId)} />
+        return <MultipleDeviceComponent device = {device} onUpdate = {(device, value) => this.updateDeviceInfo(device, value)} />
     }
 
-    updateDeviceInfo(deviceId) {
-        this.props.dispatch(devicesActions.getDevice(deviceId));
+    updateDeviceInfo(device, value) {
+        this.props.dispatch(devicesActions.updateDevice(device, value));
     }
 
     render() {

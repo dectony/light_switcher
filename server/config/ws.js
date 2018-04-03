@@ -2,7 +2,8 @@ const WebSocket = require('ws');
 const url = require('url'),
     deviceService = require('../services/devicesService');
 
-const repository = require('../repositories/userRepository');
+const userRepository = require('../repositories/userRepository'),
+    deviceRepository = require('../repositories/deviceRepository');
 
 let wss;
 let clients = [];
@@ -20,7 +21,7 @@ exports.Initialize = function(server) {
                 });
                 break;
             case 'client':
-                let query = repository.getUserHouses(location.query.user);
+                let query = userRepository.getUserHouses(location.query.user);
                 query.select('brokerId');
                 query.exec(function (err,brokers) {
                     if(err){
@@ -44,12 +45,36 @@ exports.Initialize = function(server) {
             let receivedData = JSON.parse(message);
             switch(receivedData.type){
                 case 'DEVICE_UPDATE':
-                    const device = deviceService.getDeviceInfoFromBroker(receivedData);
-                    const client = clients.find(c =>c.type === 'client' &&
-                        c.brokers.includes(receivedData.brokerId));
-                    if(client){
-                        client.ws.send(JSON.stringify(device));
-                    }
+                    deviceRepository.getById(receivedData.deviceId).exec(function (err,device) {
+                        if(err){
+                            return console.log(err);
+                        }else{
+                            device.value = receivedData.data;
+                            device.save();
+                            const wrappedDevice = deviceService.getDeviceInfo(device.toObject());
+                            const client = clients.find(c =>c.type === 'client' &&
+                                c.brokers.includes(receivedData.brokerId));
+                            if(client){
+                                client.ws.send(JSON.stringify(wrappedDevice));
+                            }
+                        }
+                    });
+                    break;
+                case 'DEVICE_UPDATE_CLIENT':
+                    deviceRepository.getById(receivedData.deviceId).exec(function (err,device) {
+                        if(err){
+                            return console.log(err);
+                        }else{
+                            device.value = receivedData.data;
+                            device.save();
+                            const wrappedDevice = deviceService.getDeviceInfo(device.toObject());
+                            const broker = clients.find(b =>b.type === 'broker' &&
+                                b.brokers.includes(receivedData.brokerId));
+                            if(client){
+                                client.ws.send(JSON.stringify(wrappedDevice));
+                            }
+                        }
+                    });
                     break;
                 default:
                     break;

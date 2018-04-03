@@ -15,6 +15,8 @@ export const deviceConstants = {
     DELETE_SUCCESS: 'DEVICE_DELETE_SUCCESS',
     DELETE_FAILURE: 'DEVICE_DELETE_FAILURE',
 
+    UPDATE_DEVICE: 'UPDATE_DEVICE',
+
     LightSwitcher : "LIGHT_SWITCHER",
     IpCamera : "IP_CAM"
 };

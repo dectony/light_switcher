@@ -6,6 +6,7 @@ export const devicesActions = {
     addDevice,
     getDevices,
     getDevice,
+    updateDevice,
     delete: _delete
 };
 
@@ -61,6 +62,14 @@ function getDevice(deviceId) {
     function request() { return { type: deviceConstants.GET_DEVICE_REQUEST } }
     function success(device) { return { type: deviceConstants.GET_DEVICE_SUCCESS, device } }
     function failure(error) { return { type: deviceConstants.GET_DEVICE_FAILURE, error } }
+}
+
+function updateDevice(device) {
+    return dispatch => {
+        dispatch(request());
+    };
+
+    function request() { return { type: deviceConstants.UPDATE_DEVICE, device } }
 }
 
 function _delete(deviceId) {

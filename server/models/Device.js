@@ -8,7 +8,8 @@ const deviceSchema =  new Schema({
     value: {type: String, required: false},
     room: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Room'
+        ref: 'Room',
+        required: false
     }
 });
 

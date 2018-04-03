@@ -65,7 +65,7 @@ class NewDevicePage extends React.Component {
                     value={type}
                     onChange={this.handleTypeChange}
                     options={[
-                        { value: 'one', label: 'LightSwitcher' },
+                        { value: 'RELAY', label: 'LightSwitcher' },
                         { value: 'two', label: 'IP Cam' },
                         { value: 'CLIMATE_SENSOR', label: 'Climate sensor' },
                     ]}

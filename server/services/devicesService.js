@@ -1,21 +1,34 @@
 exports.getDeviceInfo = function(device) {
     switch (device.type){
-        case 'one':
+        case 'RELAY':
+            if(device.value){
+                return {...device, isEnabled: device.value === '1'}
+            }
             return {...device, isEnabled: true};
         case 'two':
             return {...device, videoUrl: 'test'};
         case 'CLIMATE_SENSOR':
-            return {...device, measures: {
-                Temperature: Math.random() * 40,
-                Humidity: Math.random() * 70
-            }};
+            let measures = {};
+            if(device.value){
+                const sensorData = JSON.parse(device.value);
+                measures = {
+                    Temperature: sensorData.T,
+                    Humidity: sensorData.H
+                };
+            }else{
+                measures = {
+                    Temperature: 0,
+                    Humidity: 0
+                };
+            }
+            return {...device, measures: measures};
         default: return device;
     }
 };
 
 exports.getDeviceInfoFromBroker = function(device) {
     switch (device.deviceType){
-        case 'one':
+        case 'RELAY':
             return {...device, isEnabled: true};
         case 'two':
             return {...device, videoUrl: 'test'};

@@ -12,7 +12,7 @@ exports.getById = function (req, res) {
 
 exports.getRooms = function (req, res) {
     const condition = {house: req.params.id};
-    Room.find(condition).populate('devices').lean().exec(function (err, collection) {
+    Room.find(condition).lean().populate('devices').exec(function (err, collection) {
         let result =collection.map((room) => {return {...room, devices: room.devices.map((device) => deviceService.getDeviceInfo(device))}}) ;
         //let result ={...result, rooms:collection.map((room) => {...room, devices: devices.map((device) => deviceService.getDeviceInfo(device)))}} ;
         res.send(result);
@@ -22,18 +22,25 @@ exports.getRooms = function (req, res) {
 exports.addRoom = function (req, res) {
 
     console.log('POST - /addRoom');
-    const room = new Room();
-    room.title = req.body.title;
-    room.house = new mongoose.mongo.ObjectId(req.body.house);
+    const room = new Room({
+        title: req.body.title,
+        house: new mongoose.mongo.ObjectId(req.body.house)
+    });
 
     room.save(function (err, room) {
         if (err) {
             console.log('Error while saving room: ' + err);
             return res.send({error: err});
         } else {
-            House.findOne({_id: room.house}).exec(function (err, home) {
-                home.rooms.push(room);
-                home.save();
+            House.findOne({_id: room.house}).exec(function (err, doc) {
+                doc.rooms.push(room);
+                doc.save(function(err,home){
+                    if(err){
+                        console.log('Error while saving room: ' + err);
+                    }else{
+                        console.log("Room was added to "+ home.title);
+                    }
+                });
             });
             console.log("Room was created");
             return res.send({status: 'OK', room: room});

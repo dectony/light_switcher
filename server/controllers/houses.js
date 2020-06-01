@@ -29,7 +29,6 @@ exports.createHouse = function (req, res) {
 
     console.log('POST - /createHouse');
     const house = new House();
-    house._id = new mongoose.Types.ObjectId();
     house.title = req.body.title;
     house.description = req.body.description;
     house.brokerId = req.body.brokerId;

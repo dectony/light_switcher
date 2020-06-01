@@ -13,4 +13,6 @@ module.exports = function(config) {
     });
 
     userModel.createDefaultUsers();
+
+    //userModel.doSomeTests();
 };

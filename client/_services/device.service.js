@@ -4,6 +4,7 @@ export const deviceService = {
     addDevice,
     getDevices,
     getDeviceById,
+    updateDeviceState,
     _delete,
 };
 
@@ -18,19 +19,29 @@ function addDevice(device){
     return fetch(config.apiUrl + '/api/devices', requestOptions).then(handleResponse);
 }
 
-function getDevices(roomId){
+function getDevices(houseId){
     const requestOptions = {
         method: 'GET',
         headers: authHeader()
     };
 
-    return fetch(config.apiUrl + '/api/devices/' + roomId, requestOptions).then(handleResponse);
+    return fetch(config.apiUrl + '/api/devices/' + houseId, requestOptions).then(handleResponse);
 }
 
 function getDeviceById(id){
     const requestOptions = {
         method: 'GET',
         headers: authHeader()
+    };
+
+    return fetch(config.apiUrl + '/api/device/' + id, requestOptions).then(handleResponse);
+}
+
+function updateDeviceState(id){
+    const requestOptions = {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(device)
     };
 
     return fetch(config.apiUrl + '/api/device/' + id, requestOptions).then(handleResponse);

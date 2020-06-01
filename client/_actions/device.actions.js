@@ -32,11 +32,11 @@ function addDevice(device) {
     function failure(error) { return { type: deviceConstants.CREATE_FAILURE, error } }
 }
 
-function getDevices(roomId) {
+function getDevices(houseId) {
     return dispatch => {
         dispatch(request());
 
-        deviceService.getDevices(roomId)
+        deviceService.getDevices(houseId)
             .then(
                 devices => dispatch(success(devices)),
                 error => dispatch(failure(error))

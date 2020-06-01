@@ -4,13 +4,13 @@ const Schema = mongoose.Schema;
 const roomSchema =  new Schema({
     title: {type: String, required: true},
     house: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'House'
+        type: Schema.Types.ObjectId,
+        ref: "House"
     },
     devices: [{
-        type: mongoose.Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'Device'
     }]
-});
+}, { usePushEach: true });
 
-module.exports = mongoose.model('Room', roomSchema);
+module.exports = mongoose.model("Room", roomSchema);

@@ -6,18 +6,18 @@ const houseSchema =  new Schema({
     description: {type: String, required: false},
     brokerId: {type: String, required: true},
     owner: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'User'
     },
     occupants: [{
-        type: mongoose.Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'User'
     }],
     rooms: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Room'
+        type: Schema.Types.ObjectId,
+        ref: "Room"
     }],
     createdDate: {type: Date, default: Date.now}
-});
+},{ usePushEach: true });
 
-module.exports = mongoose.model('House', houseSchema);
+module.exports = mongoose.model("House", houseSchema);

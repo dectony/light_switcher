@@ -44,6 +44,7 @@ module.exports = function (app) {
     app.get('/api/devices/:id', devices.getHouseDevices);
     //app.delete('/api/rooms/:id', passport.authenticate('jwt', { session: false }), rooms.deleteRoom);
     app.get('/api/device/:id', passport.authenticate('jwt', { session: false }), devices.getById);
+    app.put('/api/device/:id', passport.authenticate('jwt', { session: false }), devices.updateDeviceValue);
 
     app.post('/login', auth.authenticate);
     //app.post('/login', passport.authenticate('jwt', {session: false}), auth.authenticate);

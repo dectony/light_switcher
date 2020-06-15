@@ -31,7 +31,7 @@ class MyHousesPage extends React.Component {
     render() {
         const { houses  } = this.props;
         return (
-            <div className="col-md-6 col-md-offset-3">
+            <div >
                 <h1>My Houses</h1>
                 <h2>Here you can add/remove houses</h2>
                 {houses.items &&

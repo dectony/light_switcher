@@ -6,10 +6,11 @@ export function devices(state = {items:[]},action) {
             return {...state, loading: true};
         case deviceConstants.GET_DEVICE_SUCCESS:
             if(state.items.find(i => i.deviceId === action.device.deviceId)){
-                return {...state,
-                        items: state.items.map((device) => device.deviceId === action.device.deviceId
-                        ? action.device
-                        : device)};
+                return {...state, deviceToManage : action.device};
+                // return {...state,
+                //         items: state.items.map((device) => device.deviceId === action.device.deviceId
+                //         ? action.device
+                //         : device)};
             }else{
                 return {...state,
                     items: [...state.items, action.device]}

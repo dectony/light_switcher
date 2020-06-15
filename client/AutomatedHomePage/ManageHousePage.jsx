@@ -41,7 +41,7 @@ class ManageHousePage extends React.Component {
     render() {
         const { rooms, devices } = this.props;
         return(<div>
-                <div className="col-md-6 col-md-offset-3">
+                <div>
                     <h1>Manage my house page</h1>
                     <h2>Here you can see all devices in the house</h2>
                     { rooms.items && rooms.items.length > 0 &&
@@ -54,7 +54,6 @@ class ManageHousePage extends React.Component {
                                         </h3>
                                     </AccordionItemTitle>
                                     <AccordionItemBody>
-                                        <p>Test</p>
                                         <p>
                                             {devices.items &&
                                                 devices.items.map((device, index) =>

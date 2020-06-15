@@ -24,7 +24,7 @@ class EditHousePage extends React.Component {
     render() {
         const {editHouse} = this.props;
         return(
-            <div className="col-md-6 col-md-offset-3">
+            <div >
                 <h1>Edit {editHouse.item && editHouse.item.title}</h1>
                 <h2>Here you can add rooms to the house</h2>
                 {editHouse.item &&

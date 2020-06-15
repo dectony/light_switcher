@@ -6,7 +6,7 @@ class HomePage extends React.Component {
     render() {
         const { user } = this.props;
         return (
-            <div className="col-md-6 col-md-offset-3">
+            <div>
                 <h1>Hi {user.firstName}!</h1>
                 <p>You're logged in</p>
                 <p>

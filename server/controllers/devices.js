@@ -7,7 +7,7 @@ const mongoose = require('mongoose'),
     wsSend = require('../config/ws').Send;
 
 exports.getById = function (req, res) {
-    const condition = {deviceId: req.params.id};
+    const condition = {_id: req.params.id};
     Device.findOne(condition).lean().exec(function (err, device) {
         let wrappedDevice = deviceService.getDeviceInfo(device);
         console.log(wrappedDevice);

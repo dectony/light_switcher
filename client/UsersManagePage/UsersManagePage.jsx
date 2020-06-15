@@ -16,7 +16,7 @@ class UsersManagePage extends React.Component {
     render() {
         const { users } = this.props;
         return (
-            <div className="col-md-6 col-md-offset-3">
+            <div >
                 <h3>All registered users:</h3>
                 {users.loading && <em>Loading users...</em>}
                 {users.error && <span className="text-danger">ERROR: {users.error}</span>}

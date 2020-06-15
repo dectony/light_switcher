@@ -24,7 +24,7 @@ export default class MyNavigationBar extends React.Component {
 
     render() {
         return (
-            <Menu pageWrapId={ "page-wrap" } outerContainerId={ "outer-container" }>
+            <Menu>
                 <a id="home" className="menu-item">
                     <Link to="/"><span className="glyphicon glyphicon glyphicon-user"></span><label className="menuLabel">Home Page</label></Link>
                 </a>

@@ -1,5 +1,10 @@
 import React from 'react'
 import Toggle from 'react-toggle'
+import { Link } from 'react-router-dom';
+
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 export default class RelayComponent extends React.Component {
     constructor(props) {
@@ -21,13 +26,18 @@ export default class RelayComponent extends React.Component {
     render() {
         const { device } = this.props;
         return(
-            <div>
-                <label>This is relay</label>
-                <span>{device.title} </span>
-                    <Toggle
-                        defaultChecked={this.state.toggleState}
-                        onChange={this.handleBaconChange} />
-            </div>
+            <Container>
+                <Row>
+                    <Col><Link to={'/device/manage/' + device._id }>Manage</Link></Col>
+                    <Col>{device.title}</Col>
+                    <Col>
+                        <Toggle
+                            defaultChecked={this.state.toggleState}
+                            onChange={this.handleBaconChange} />
+                    </Col>
+                </Row>
+                    
+            </Container>
         )
     }
 }

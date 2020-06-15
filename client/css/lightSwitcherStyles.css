@@ -1,108 +1,85 @@
-html {
-    height: 100%;
-}
+html,
 body {
-    height: 100%;
-    background: #444;
-    color: #fffce1;
-    font-family: 'Raleway', Arial, sans-serif;
+  margin: 0;
 }
-#app {
-    height: 100%;
+
+#App {
+  font-family: sans-serif;
+
+  /* Give app full page to work with */
+  height: 100vh;
 }
-a {
-    text-decoration: none;
+
+#page-wrap {
+  /* Prevent sidebar from showing a scrollbar on page */
+  overflow: auto;
 }
-a:hover,
-a:focus {
-    color: #c94e50;
+
+/* Individual item */
+.bm-item {
+  display: inline-block;
+
+  /* Our sidebar item styling */
+  text-decoration: none;
+  margin-bottom: 10px;
+  color: #d1d1d1;
+  transition: color 0.2s;
 }
-main {
-    height: 100%;
-    padding: 3em 2em;
-    text-align: center;
-    background: #b4bad2;
-    overflow: scroll;
+
+/* Change color on hover */
+.bm-item:hover {
+  color: white;
 }
-h1 {
-    font-weight: 800;
-    font-size: 3.75em;
-}
-.description {
-    max-width: 20em;
-    margin: 1.2em auto 1em;
-    line-height: 1.3em;
-    font-weight: 400;
-}
-.menuLabel {
-    margin-left: 10px;
-    cursor: pointer;
-}
-.help-block { font-size: 12px; }
+
+/* The rest copied directly from react-burger-menu docs */
 
 /* Position and sizing of burger button */
 .bm-burger-button {
-    position: fixed;
-    width: 36px;
-    height: 30px;
-    left: 36px;
-    top: 36px;
+  position: fixed;
+  width: 36px;
+  height: 30px;
+  left: 36px;
+  top: 36px;
 }
 
 /* Color/shape of burger icon bars */
 .bm-burger-bars {
-    background: #373a47;
+  background: #373a47;
 }
 
 /* Position and sizing of clickable cross button */
 .bm-cross-button {
-    height: 24px;
-    width: 24px;
+  height: 24px;
+  width: 24px;
 }
 
 /* Color/shape of close button cross */
 .bm-cross {
-    background: #bdc3c7;
+  background: #bdc3c7;
 }
 
 /* General sidebar styles */
 .bm-menu {
-    background: #373a47;
-    padding: 2.5em 1.5em 0;
-    font-size: 1.15em;
+  background: #373a47;
+  padding: 2.5em 1.5em 0;
+  font-size: 1.15em;
 }
-
-.bm-menu a {
-    color: #b8b7ad;
-}
-.bm-menu a:hover,
-.bm-menu a:focus {
-    color: #c94e50;
-}
-.bm-item-list a {
-    padding: 0.8em;
-}
-.bm-item-list a span {
-    margin-left: 10px;
-    font-weight: 700;
-}
-
 
 /* Morph shape necessary with bubble or elastic */
 .bm-morph-shape {
-    fill: #373a47;
+  fill: #373a47;
 }
 
 /* Wrapper for item list */
 .bm-item-list {
-    color: #b8b7ad;
-    padding: 0.8em;
+  color: #b8b7ad;
 }
 
 /* Styling of overlay */
 .bm-overlay {
-    background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.3);
 }
+
 
 
 
@@ -246,4 +223,8 @@ h1 {
 .accordion__title--animated[aria-expanded="true"]:hover .accordion__arrow {
     animation-name: move-up;
     animation-duration: 1.5s;
+}
+
+.test {
+  content:"\e030";
 }

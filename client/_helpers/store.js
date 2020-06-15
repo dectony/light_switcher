@@ -5,6 +5,7 @@ import thunkMiddleware from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 import rootReducer from '../_reducers';
 import wsSagas from '../sagas/sagas'
+import { helloSaga } from '../sagas';
 
 const loggerMiddleware = createLogger();
 
@@ -22,3 +23,4 @@ export const store = createStore(
 
 // then run the saga
 sagaMiddleware.run(wsSagas);
+//sagaMiddleware.run(helloSaga);

@@ -4,12 +4,16 @@
   "description": "client for light_switcher",
   "main": "index.js",
   "dependencies": {
+    "@primer/octicons-react": "^10.0.0",
+    "bootstrap": "^4.5.0",
     "history": "^4.6.3",
-    "react": "^16.0.0",
+    "rc-time-picker": "^3.7.3",
+    "react": "^16.13.1",
     "react-accessible-accordion": "^1.0.2",
     "react-accessible-modal": "^2.0.0",
-    "react-burger-menu": "^2.1.11",
-    "react-dom": "^16.0.0",
+    "react-bootstrap": "^1.0.1",
+    "react-burger-menu": "^2.6.15",
+    "react-dom": "^16.13.1",
     "react-popper": "^0.7.4",
     "react-redux": "^5.0.5",
     "react-router-dom": "^4.1.2",
@@ -21,6 +25,7 @@
     "redux-logger": "^3.0.6",
     "redux-saga": "^0.16.0",
     "redux-thunk": "^2.2.0",
+    "semantic-ui-react": "^0.88.2",
     "ws": "^5.1.0"
   },
   "devDependencies": {

@@ -6,6 +6,10 @@ import { history } from '../_helpers';
 import { alertActions } from '../_actions';
 import { AutomatedHomePage } from '../AutomatedHomePage';
 
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+
 
 import MyNavigationBar from "../Navbar/Navbar";
 
@@ -24,14 +28,20 @@ class App extends React.Component {
         return (
             <div id="outer-container">
                 <div>
-                    <MyNavigationBar/>
-                    <div className="col-sm-8 col-sm-offset-2" id="page-wrap">
-                        {alert.message &&
-                            <div className={`alert ${alert.type}`}>{alert.message}</div>
-                        }
-                        <div><button onClick={history.goBack}>Go Back</button></div>
-                        {this.props.children}
-                    </div>
+                    <MyNavigationBar pageWrapId={"page-wrap"} outerContainerId={"outer-container"} />
+                    <Container>
+                        <Row>
+                            <Col>
+                                <div id="page-wrap">
+                                    {alert.message &&
+                                <div className={`alert ${alert.type}`}>{alert.message}</div>}
+                                <div><button onClick={history.goBack}>Go Back</button></div>
+                                    {this.props.children}
+                                </div>
+                            </Col>
+                        </Row>
+                    </Container>
+
                 </div>
             </div>
         );

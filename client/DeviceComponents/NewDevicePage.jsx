@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { devicesActions } from '../_actions';
 
-import Select from 'react-select';
-
+//import Select from 'react-select';
+import { Select } from 'semantic-ui-react'
 
 class NewDevicePage extends React.Component {
     constructor(props) {
@@ -51,7 +51,7 @@ class NewDevicePage extends React.Component {
         const { selectedOption } = this.state;
         const type = selectedOption && selectedOption.value;
         return(
-            <div className="col-md-6 col-md-offset-3">
+            <div >
                 <h1>New Device</h1>
                 <div className={'form-group' + (submitted && !title ? ' has-error' : '')}>
                     <label htmlFor="title">Title</label>
@@ -60,8 +60,15 @@ class NewDevicePage extends React.Component {
                     <div className="help-block">Title is required</div>
                     }
                 </div>
-                <Select
-                    name="form-field-name"
+                <Select placeholder='Select your country' options={[
+                        { value: 'RELAY', label: 'LightSwitcher' },
+                        { value: 'two', label: 'IP Cam' },
+                        { value: 'CLIMATE_SENSOR', label: 'Climate sensor' },
+                    ]} />
+                {/* <Select
+                    className="basic-single"
+                    classNamePrefix="select"
+                    name="deviceTypes"
                     value={type}
                     onChange={this.handleTypeChange}
                     options={[
@@ -69,7 +76,7 @@ class NewDevicePage extends React.Component {
                         { value: 'two', label: 'IP Cam' },
                         { value: 'CLIMATE_SENSOR', label: 'Climate sensor' },
                     ]}
-                />
+                /> */}
                 <div className={'form-group' + (submitted && !deviceId ? ' has-error' : '')}>
                     <label htmlFor="deviceId">deviceId</label>
                     <input type="text" className="form-control" name="deviceId" value={deviceId} onChange={this.handleChange} />

@@ -41,7 +41,7 @@
     "path": "^0.12.7",
     "style-loader": "^1.2.1",
     "webpack": "^3.6.0",
-    "webpack-dev-server": "^2.11.5"
+    "webpack-dev-server": "^3.1.11"
   },
   "author": "Anton Zasenka",
   "license": "ISC",

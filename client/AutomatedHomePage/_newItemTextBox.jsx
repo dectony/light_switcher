@@ -1,4 +1,5 @@
 import React from 'react'
+import { Container, Row, InputGroup, Button, FormControl} from 'react-bootstrap';
 
 export default class NewItemTextBox extends React.Component {
     constructor(props) {
@@ -33,27 +34,47 @@ export default class NewItemTextBox extends React.Component {
 
     render() {
         const { itemValue, submitted } = this.state;
-        return(
-            <form name="form">
-                <div className={'form-group' + (submitted && !itemValue ? ' has-error' : '')}>
-                    <div class="col-lg-6">
-                        <div class="input-group">
-                            <input type="text"
-                                   class="form-control"
-                                   name="itemValue"
-                                   value={itemValue}
-                                   onChange={this.handleChange}
-                                   placeholder="Enter value here..." />
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" onClick={this.handleSubmit} type="button">Add</button>
-                            </span>
-                        </div>
-                        {submitted && !itemValue &&
-                        <div className="help-block">Value is required</div>
-                        }
-                    </div>
-                </div>
-            </form>
+        return (
+            <Container>
+                <Row>
+                    <InputGroup className="mb-3">
+                        <FormControl
+                            placeholder="Room title"
+                            aria-label="Room title"
+                            aria-describedby="basic-addon2"
+                            name="itemValue"
+                            value={itemValue}
+                            onChange={this.handleChange}
+                        />
+                        <InputGroup.Append>
+                            <Button variant="outline-primary" onClick={this.handleSubmit}>Add</Button>
+                        </InputGroup.Append>
+                    </InputGroup>
+                </Row>
+                {submitted && !itemValue &&
+                    <Row>Value is required</Row>
+                }
+            </Container>
+            // <form name="form">
+            //     <div className={'form-group' + (submitted && !itemValue ? ' has-error' : '')}>
+            //         <div class="col-lg-6">
+            //             <div class="input-group">
+            //                 <input type="text"
+            //                     class="form-control"
+            //                     name="itemValue"
+            //                     value={itemValue}
+            //                     onChange={this.handleChange}
+            //                     placeholder="Enter value here..." />
+            //                 <span class="input-group-btn">
+            //                     <button class="btn btn-default" onClick={this.handleSubmit} type="button">Add</button>
+            //                 </span>
+            //             </div>
+            //             {submitted && !itemValue &&
+            //                 <div className="help-block">Value is required</div>
+            //             }
+            //         </div>
+            //     </div>
+            // </form>
         )
     }
 }

@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import  NewItemTextBox  from './_newItemTextBox'
 import { houseActions, roomsActions } from '../_actions'
 
+import { Row, Col, Container, ListGroup, Button } from 'react-bootstrap';
+
 
 class EditHousePage extends React.Component {
 
@@ -24,26 +26,22 @@ class EditHousePage extends React.Component {
     render() {
         const {editHouse} = this.props;
         return(
-            <div >
-                <h1>Edit {editHouse.item && editHouse.item.title}</h1>
-                <h2>Here you can add rooms to the house</h2>
-                {editHouse.item &&
-                <div>
-                    {editHouse.item.title}
-                    {editHouse.item.description}
-                </div>
-                }
-                {editHouse.item && editHouse.item.rooms && editHouse.item.rooms.length > 0 &&
-                <ul class="list-group">
-                    {editHouse.item.rooms.map((room, index) =>
-                        <li class="list-group-item list-group-item-info" key={room._id}>
+            <Container>
+                <Row>
+                    <h1>Edit {editHouse.item && editHouse.item.title}</h1>
+                </Row>
+                <Row>
+                    <h2>Here you can add rooms to the house</h2>
+                </Row>
+                <ListGroup>
+                    {editHouse.item && editHouse.item.rooms && editHouse.item.rooms.length > 0 && editHouse.item.rooms.map((room) =>
+                        <ListGroup.Item  key={room._id}>
                             {room.title}
-                        </li>
+                        </ListGroup.Item>
                     )}
-                </ul>
-                }
+                </ListGroup>
                 <NewItemTextBox onClick = {(roomTitle) => this.handleAddNewRoom(roomTitle)}/>
-            </div>
+            </Container>
         )
     }
 }

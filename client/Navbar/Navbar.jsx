@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { slide as Menu } from 'react-burger-menu'
+import { slide as Menu } from 'react-burger-menu';
+
+import '../css/burgerNavBarStyles.css';
 
 export default class MyNavigationBar extends React.Component {
     constructor(props) {
@@ -25,18 +27,10 @@ export default class MyNavigationBar extends React.Component {
     render() {
         return (
             <Menu>
-                <a id="home" className="menu-item">
-                    <Link to="/"><span className="glyphicon glyphicon glyphicon-user"></span><label className="menuLabel">Home Page</label></Link>
-                </a>
-                <a id="home" className="menu-item">
-                    <Link to="/houses"><span className="glyphicon glyphicon glyphicon-home"></span><label className="menuLabel">My Houses</label></Link>
-                </a>
-                <a id="home" className="menu-item">
-                    <Link to="/users"><span className="glyphicon glyphicon glyphicon-remove"></span><label className="menuLabel">Users</label></Link>
-                </a>
-                <a id="home" className="menu-item">
-                    <Link to="/houses"><span className="glyphicon glyphicon glyphicon-remove"></span><label className="menuLabel">Test</label></Link>
-                </a>
+                <Link to="/"><i class="fas fa-home"></i><span>Home Page</span></Link>
+                <Link to="/houses"><i class="fas fa-laptop-house"></i><span>My Houses</span></Link>
+                <Link to="/users"><i class="fas fa-users-cog"></i><span>Users</span></Link>
+                <Link to="/houses"><i class="fa fa-fw fa-star-o"></i><span>Test</span></Link>
             </Menu>
         )
     }

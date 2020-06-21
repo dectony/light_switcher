@@ -6,8 +6,9 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { Button, Jumbotron, ListGroup } from 'react-bootstrap'
+import Form from 'react-bootstrap/Form';
 
-import NewScheduleComponent, { Test } from './NewScheduleComponent';
+import NewTimerComponent from './NewTimerComponent';
 
 import moment from 'moment';
 
@@ -16,7 +17,7 @@ const format = 'h:mm a';
 const now = moment().hour(0).minute(0);
 
 
-class SchedulePage extends React.Component {
+class TimersPage extends React.Component {
     constructor(props) {
         super(props);
 
@@ -25,11 +26,11 @@ class SchedulePage extends React.Component {
             showModal: false
         };
 
-        this.handleAddNewSchedule = this.handleAddNewSchedule.bind(this);
+        this.handleAddNewTimer = this.handleAddNewTimer.bind(this);
         this.handleHideModal = this.handleHideModal.bind(this);
     }
 
-    handleAddNewSchedule(value) {
+    handleAddNewTimer(value) {
         this.setState({ values: [...this.state.values, value] });
         this.setState({ showModal: !this.state.showModal });
     }
@@ -43,24 +44,39 @@ class SchedulePage extends React.Component {
         const { values, showModal } = this.state;
         return (
             <Container>
-                <Test />
                 <Row>
                     <Col>
-                        Schedules
+                        Timers
                         </Col>
                 </Row>
                 <ListGroup>
-                    {values.map((value, index) => <ListGroup.Item key = {index}>{value}</ListGroup.Item>)}
+                    {values.map((value, index) =>
+                        <ListGroup.Item key={index}>
+                            <Row>
+                                <Col>
+                                    {value.timeValue}
+                                </Col>
+                                <Col>
+                                    <Form.Check
+                                        disabled
+                                        type="switch"
+                                        id= {"enabled"+ index}
+                                        checked={value.isEnabled}
+                                        label = "Action to Perform"
+                                    />
+                                </Col>
+                            </Row>
+                        </ListGroup.Item>)}
                 </ListGroup>
-                
+
                 <Row>
                     <Button onClick={() => this.setState({ showModal: !this.state.showModal })} variant="outline-primary"><i class="far fa-calendar-plus"></i> Add new</Button>
                 </Row>
 
-                <NewScheduleComponent
+                <NewTimerComponent
                     show={showModal}
                     onHide={this.handleHideModal}
-                    onSubmit={this.handleAddNewSchedule}
+                    onSubmit={this.handleAddNewTimer}
                 />
             </Container>
         )
@@ -77,5 +93,5 @@ function mapStateToProps(state) {
     };
 }
 
-const connectedSchedulePage = connect(mapStateToProps)(SchedulePage);
-export { connectedSchedulePage as SchedulePage };
+const connectedTimersPage = connect(mapStateToProps)(TimersPage);
+export { connectedTimersPage as TimersPage };

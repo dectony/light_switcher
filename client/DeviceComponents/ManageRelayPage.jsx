@@ -38,9 +38,9 @@ class ManageRelayPage extends React.Component {
                         </Col>
                     </Row>
                     <Row>
-                        <Col><Link to="/login"><Button variant="outline-primary"><StopwatchIcon size={16} /> Set Up timer...</Button></Link></Col>
+                        <Col><Link to={"/timers/" + this.props.match.params.deviceId}><Button variant="outline-primary"><StopwatchIcon size={16} /> Set Up timer...</Button></Link></Col>
                         <Col><Link to={"/schedules/" + this.props.match.params.deviceId}><Button variant="outline-primary"><CalendarIcon size={16} /> Schedule...</Button></Link></Col>
-                        <Col><Link to="/"><Button variant="outline-primary"><HistoryIcon size={16} /> Loop interval</Button></Link></Col>
+                        <Col><Link to={"/timers/" + this.props.match.params.deviceId}><Button variant="outline-primary"><HistoryIcon size={16} /> Loop interval</Button></Link></Col>
                     </Row>
                 </Container>
             </Jumbotron>

@@ -11,7 +11,7 @@ import { NewDevicePage } from './DeviceComponents';
 import { ManageRelayPage } from './DeviceComponents';
 import { UsersManagePage } from './UsersManagePage';
 import { MyHousesPage, EditHousePage, ManageHousePage, NewHousePage } from './AutomatedHomePage';
-import { SchedulePage } from './DeviceSettingsComponents'
+import { SchedulePage, TimersPage } from './DeviceSettingsComponents'
 
 
 import { store } from './_helpers';
@@ -34,6 +34,7 @@ render(
                     <Route path="/device/manage/:deviceId" component={ManageRelayPage}/>
                     <Route path="/users" component={UsersManagePage}/>
                     <Route path="/schedules/:deviceId" component={SchedulePage}/>
+                    <Route path="/timers/:deviceId" component={TimersPage}/>
                 </App>
             </div>
         </Router>
